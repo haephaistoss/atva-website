@@ -1807,6 +1807,193 @@
     }
   }
 
+
+  /* ── Pályázati Anyag Bemutatók (Showcase) Section ── */
+  .showcase-section {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border-subtle);
+    position: relative;
+    padding: 80px 0;
+  }
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+  }
+  @media (max-width: 980px) {
+    .showcase-grid {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+  }
+  .showcase-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 252, 246, 0.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(221, 211, 190, 0.72);
+    border-radius: 24px;
+    padding: 30px 26px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(16, 38, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    transition: transform 0.32s var(--ease-spring), border-color 0.3s ease, box-shadow 0.32s ease;
+  }
+  .showcase-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 22px 48px rgba(16, 38, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+  [data-theme="dark"] .showcase-card {
+    background: rgba(20, 40, 44, 0.76);
+    border-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+  [data-theme="dark"] .showcase-card:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  }
+  .showcase-doc-preview {
+    height: 136px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #10262A 0%, #16363B 100%);
+    border: 1px solid rgba(217, 164, 65, 0.3);
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  .showcase-doc-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle at top right, rgba(217, 164, 65, 0.22), transparent 70%);
+    pointer-events: none;
+  }
+  .showcase-doc-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  .showcase-doc-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: rgba(217, 164, 65, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-gold);
+  }
+  .showcase-doc-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+  .showcase-doc-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    background: rgba(217, 164, 65, 0.14);
+    padding: 3px 9px;
+    border-radius: 6px;
+    border: 1px solid rgba(217, 164, 65, 0.28);
+  }
+  .showcase-doc-meta {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.78rem;
+    color: rgba(245, 240, 230, 0.75);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .showcase-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .showcase-desc {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--fg-muted);
+    margin-bottom: 22px;
+  }
+  .showcase-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: rgba(217, 164, 65, 0.12);
+    color: var(--accent-amber);
+    border: 1px solid rgba(217, 164, 65, 0.3);
+    margin-top: auto;
+    width: fit-content;
+  }
+  [data-theme="dark"] .showcase-status-badge {
+    background: rgba(217, 164, 65, 0.15);
+    color: var(--accent-gold);
+  }
+  .showcase-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    box-shadow: 0 0 8px var(--accent-gold);
+  }
+  .showcase-banner {
+    margin-top: 48px;
+    padding: 30px 36px;
+    border-radius: 20px;
+    background: rgba(255, 252, 246, 0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(221, 211, 190, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    box-shadow: 0 10px 30px rgba(16, 38, 42, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  @media (max-width: 768px) {
+    .showcase-banner {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 20px;
+    }
+    .showcase-banner .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  [data-theme="dark"] .showcase-banner {
+    background: rgba(20, 40, 44, 0.75);
+    border-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  }
+
 </style>
 </head>
 <body>
@@ -1829,6 +2016,7 @@
 
       <!-- Desktop Nav Menu -->
       <nav class="nav-menu" aria-label="Fő navigáció">
+        <a class="nav-link" href="#palyazati-bemutatok" data-i18n="nav_showcase">Anyagbemutatók</a>
         <a class="nav-link" href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a>
         <a class="nav-link" href="#szolgaltatasok" data-i18n="nav_services">Szolgáltatások</a>
         <a class="nav-link" href="#folyamat" data-i18n="nav_process">Így dolgozunk</a>
@@ -1876,7 +2064,9 @@
 <!-- ── MOBILE NAVIGATION DRAWER ── -->
 <div class="mobile-drawer" id="mobileDrawer" role="dialog" aria-label="Mobil navigáció" aria-hidden="true">
   <ul class="mobile-drawer-links">
-    <li><a href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a></li>
+    <li><a href="#palyazati-bemutatok" data-i18n="nav_showcase">Anyagbemutatók</a></li>
+    <li><a href="#palyazati-bemutatok" data-i18n="nav_showcase">Anyagbemutatók</a>
+          <a href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a></li>
     <li><a href="#szolgaltatasok" data-i18n="nav_services">Szolgáltatások</a></li>
     <li><a href="#folyamat" data-i18n="nav_process">Így dolgozunk</a></li>
     <li><a href="#csapat" data-i18n="nav_team">Csapat</a>
@@ -1960,6 +2150,95 @@
     </div>
   </div>
 </section>
+
+  <!-- ═════════════════════════════════════════════════════════════
+       PÁLYÁZATI ANYAG BEMUTATÓK (SHOWCASE) SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="section showcase-section" id="palyazati-bemutatok">
+    <div class="container">
+      <div class="section-head text-center">
+        <span class="badge" data-i18n="showcase_badge">Dokumentáció & Esettanulmányok</span>
+        <h2 class="section-title" data-i18n="showcase_title">Pályázati Anyag Bemutatók</h2>
+        <p class="section-lead" data-i18n="showcase_lead">
+          Betekintés a sikeresen benyújtott és elbírált pályázati dokumentációk felépítésébe, szakmai szerkezetébe és megvalósíthatósági tanulmányaiba.
+        </p>
+      </div>
+
+      <div class="showcase-grid">
+        <!-- Card 1: GINOP Plusz -->
+        <article class="showcase-card">
+          <div class="showcase-doc-preview">
+            <div class="showcase-doc-top">
+              <span class="showcase-doc-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </span>
+              <span class="showcase-doc-badge" data-i18n="showcase_card1_tag">Eszközbeszerzés & K+F</span>
+            </div>
+            <div class="showcase-doc-meta" data-i18n="showcase_card1_meta">GINOP_Plusz_Minta.pdf · 42 oldal</div>
+          </div>
+          <h3 class="showcase-title" data-i18n="showcase_card1_title">GINOP Plusz — Technológiafejlesztés</h3>
+          <p class="showcase-desc" data-i18n="showcase_card1_desc">
+            Komplex beruházási terv, pénzügyi és műszaki megvalósíthatósági tanulmányok részletes bemutatása.
+          </p>
+          <div class="showcase-status-badge">
+            <span class="showcase-status-dot"></span>
+            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          </div>
+        </article>
+
+        <!-- Card 2: Energetika -->
+        <article class="showcase-card">
+          <div class="showcase-doc-preview">
+            <div class="showcase-doc-top">
+              <span class="showcase-doc-icon">
+                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+              </span>
+              <span class="showcase-doc-badge" data-i18n="showcase_card2_tag">Energetika & Zöld Átállás</span>
+            </div>
+            <div class="showcase-doc-meta" data-i18n="showcase_card2_meta">KEHOP_Energetika_Minta.pdf · 36 oldal</div>
+          </div>
+          <h3 class="showcase-title" data-i18n="showcase_card2_title">Energiahatékonysági Korszerűsítés</h3>
+          <p class="showcase-desc" data-i18n="showcase_card2_desc">
+            Energetikai auditok, CO2-kibocsátás csökkentési modellezés és megtérülési kalkulációk mintája.
+          </p>
+          <div class="showcase-status-badge">
+            <span class="showcase-status-dot"></span>
+            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          </div>
+        </article>
+
+        <!-- Card 3: Digitalizáció -->
+        <article class="showcase-card">
+          <div class="showcase-doc-preview">
+            <div class="showcase-doc-top">
+              <span class="showcase-doc-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+              </span>
+              <span class="showcase-doc-badge" data-i18n="showcase_card3_tag">Digitalizáció & ERP</span>
+            </div>
+            <div class="showcase-doc-meta" data-i18n="showcase_card3_meta">DIMOP_Digitalizacio_Minta.pdf · 28 oldal</div>
+          </div>
+          <h3 class="showcase-title" data-i18n="showcase_card3_title">DIMOP Plusz — Vállalati Digitalizáció</h3>
+          <p class="showcase-desc" data-i18n="showcase_card3_desc">
+            Felhőalapú rendszerek, folyamatautomatizáció és digitális transzformációs projektterv struktúra.
+          </p>
+          <div class="showcase-status-badge">
+            <span class="showcase-status-dot"></span>
+            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          </div>
+        </article>
+      </div>
+
+      <!-- Banner / Call to Action inside Showcase -->
+      <div class="showcase-banner">
+        <div>
+          <h4 style="font-family:'Fraunces', Georgia, serif; font-size:1.25rem; font-weight:600; color:var(--fg); margin-bottom:6px;" data-i18n="showcase_cta_title">Egyedi pályázati anyagra kíváncsi?</h4>
+          <p style="font-size:0.92rem; color:var(--fg-muted); margin:0;" data-i18n="showcase_cta_text">Személyes vagy online egyeztetés keretében bemutatjuk az Ön iparágára és céljaira szabott mintadokumentációinkat.</p>
+        </div>
+        <a href="#kapcsolat" class="btn btn-primary" style="white-space:nowrap;" data-i18n="showcase_cta_btn">Egyeztetés kérése</a>
+      </div>
+    </div>
+  </section>
 
 <!-- ── SECTION I: BEMUTATKOZÁS (ABOUT) ── -->
 <section class="section" id="bemutatkozas">
@@ -2519,7 +2798,8 @@
       </div>
 
       <div class="footer-links">
-        <a href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a>
+        <a href="#palyazati-bemutatok" data-i18n="nav_showcase">Anyagbemutatók</a>
+          <a href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a>
         <a href="#szolgaltatasok" data-i18n="nav_services">Szolgáltatások</a>
         <a href="#folyamat" data-i18n="nav_process">Így dolgozunk</a>
         <a href="#dijazas" data-i18n="nav_pricing">Díjazás</a>
@@ -2547,7 +2827,27 @@
     const translations = {
       hu: {
         page_title: "Cégdoktor (ATVA) — Pályázatírás · Cégvezetési Tanácsadás · Projektmenedzsment",
-        nav_intro: "Bemutatkozás",
+                nav_showcase: "Anyagbemutatók",
+        showcase_badge: "Dokumentáció & Esettanulmányok",
+        showcase_title: "Pályázati Anyag Bemutatók",
+        showcase_lead: "Betekintés a sikeresen benyújtott és elbírált pályázati dokumentációk felépítésébe, szakmai szerkezetébe és megvalósíthatósági tanulmányaiba.",
+        showcase_card1_tag: "Eszközbeszerzés & K+F",
+        showcase_card1_title: "GINOP Plusz — Technológiafejlesztés",
+        showcase_card1_desc: "Komplex beruházási terv, pénzügyi és műszaki megvalósíthatósági tanulmányok részletes bemutatása.",
+        showcase_card1_meta: "GINOP_Plusz_Minta.pdf · 42 oldal",
+        showcase_card2_tag: "Energetika & Zöld Átállás",
+        showcase_card2_title: "Energiahatékonysági Korszerűsítés",
+        showcase_card2_desc: "Energetikai auditok, CO2-kibocsátás csökkentési modellezés és megtérülési kalkulációk mintája.",
+        showcase_card2_meta: "KEHOP_Energetika_Minta.pdf · 36 oldal",
+        showcase_card3_tag: "Digitalizáció & ERP",
+        showcase_card3_title: "DIMOP Plusz — Vállalati Digitalizáció",
+        showcase_card3_desc: "Felhőalapú rendszerek, folyamatautomatizáció és digitális transzformációs projektterv struktúra.",
+        showcase_card3_meta: "DIMOP_Digitalizacio_Minta.pdf · 28 oldal",
+        showcase_status_soon: "Hamarosan feltöltésre kerül",
+        showcase_cta_title: "Egyedi pályázati anyagra kíváncsi?",
+        showcase_cta_text: "Személyes vagy online egyeztetés keretében bemutatjuk az Ön iparágára és céljaira szabott mintadokumentációinkat.",
+        showcase_cta_btn: "Egyeztetés kérése",
+nav_intro: "Bemutatkozás",
         nav_services: "Szolgáltatások",
         nav_process: "Így dolgozunk",
         nav_team: "Csapat",
@@ -2706,7 +3006,27 @@
       },
       en: {
         page_title: "Cégdoktor (ATVA) — Grant Writing · Business Advisory · Project Management",
-        nav_intro: "About Us",
+                nav_showcase: "Showcase",
+        showcase_badge: "Documentation & Case Studies",
+        showcase_title: "Grant Application Material Showcase",
+        showcase_lead: "An exclusive look into the structure, feasibility studies, and professional methodology of our successfully awarded grant dossiers.",
+        showcase_card1_tag: "Equipment & R&D",
+        showcase_card1_title: "GINOP Plusz — Tech Modernization",
+        showcase_card1_desc: "Comprehensive investment plans, financial projection models, and detailed technical feasibility studies.",
+        showcase_card1_meta: "GINOP_Plusz_Sample.pdf · 42 pages",
+        showcase_card2_tag: "Energy & Sustainability",
+        showcase_card2_title: "Energy Efficiency Modernization",
+        showcase_card2_desc: "Energy audit methodologies, CO2 reduction modeling, and verified financial payback calculations.",
+        showcase_card2_meta: "KEHOP_Energy_Sample.pdf · 36 pages",
+        showcase_card3_tag: "Digitalization & ERP",
+        showcase_card3_title: "DIMOP Plusz — Enterprise Digitalization",
+        showcase_card3_desc: "Cloud migration, workflow automation, and digital transformation proposal architecture.",
+        showcase_card3_meta: "DIMOP_Digital_Sample.pdf · 28 pages",
+        showcase_status_soon: "Full content coming soon",
+        showcase_cta_title: "Looking for an industry-specific case study?",
+        showcase_cta_text: "During a free introductory consultation, we can present customized grant dossiers tailored to your sector.",
+        showcase_cta_btn: "Request Consultation",
+nav_intro: "About Us",
         nav_services: "Services",
         nav_process: "How We Work",
         nav_team: "Team",
