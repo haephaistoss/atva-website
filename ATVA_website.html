@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
+      // Dynamic partner links according to language
+      const partnerNessum = document.getElementById('partnerLinkNessum');
+      if (partnerNessum) {
+        partnerNessum.href = lang === 'en' ? 'https://nessum.hu/en/home/' : 'https://nessum.hu/';
+      }
+      const partnerSbsa = document.getElementById('partnerLinkSbsa');
+      if (partnerSbsa) {
+        partnerSbsa.href = lang === 'en' ? 'https://home.sbsalaboratory.tech/en' : 'https://home.sbsalaboratory.tech/hu';
+      }
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Cégdoktor (ATVA) — Pályázatírás · Cégvezetési Tanácsadás · Projektmenedzsment</title>
@@ -1704,6 +1713,156 @@
       scroll-behavior: auto !important;
     }
   }
+
+  /* ── Partners Section ── */
+  .partners-section {
+    background: var(--bg-alt);
+    border-top: 1px solid var(--border-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 48px;
+  }
+  .partner-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 26px 22px;
+    position: relative;
+    transition: transform 0.28s var(--ease-spring), border-color 0.25s ease, box-shadow 0.28s ease;
+  }
+  .partner-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-gold);
+    box-shadow: 0 16px 36px rgba(16, 38, 42, 0.08);
+  }
+  [data-theme="dark"] .partner-card:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  }
+  .partner-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+  }
+  .partner-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--bg-alt);
+    color: var(--accent-gold);
+    border: 1px solid var(--card-border);
+  }
+  .partner-logo-box {
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: #FFFFFF;
+    border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    transition: transform 0.25s ease;
+  }
+  [data-theme="dark"] .partner-logo-box {
+    background: rgba(255, 255, 255, 0.94);
+  }
+  .partner-logo-box.dark-box {
+    background: #10262A;
+    border-color: #244046;
+  }
+  [data-theme="dark"] .partner-logo-box.dark-box {
+    background: #0C181A;
+    border-color: #2A484E;
+  }
+  .partner-logo-img {
+    max-height: 52px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.25s var(--ease-spring);
+  }
+  .partner-card:hover .partner-logo-img {
+    transform: scale(1.05);
+  }
+  .partner-card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .partner-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.18rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .partner-desc {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--fg-muted);
+    margin-bottom: 18px;
+  }
+  .partner-card-footer {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .partner-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color 0.2s ease, gap 0.2s var(--ease-spring);
+  }
+  .partner-link:hover {
+    color: var(--fg);
+    gap: 10px;
+  }
+  .partner-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    fill: none;
+    transition: transform 0.2s var(--ease-spring);
+  }
+  .partner-card:hover .partner-link svg {
+    transform: translate(2px, -2px);
+  }
+  @media (max-width: 1080px) {
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+  }
+  @media (max-width: 600px) {
+    .partners-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .partner-card {
+      padding: 22px 18px;
+    }
+  }
+
 </style>
 </head>
 <body>
@@ -1730,6 +1889,7 @@
         <a class="nav-link" href="#szolgaltatasok" data-i18n="nav_services">Szolgáltatások</a>
         <a class="nav-link" href="#folyamat" data-i18n="nav_process">Így dolgozunk</a>
         <a class="nav-link" href="#csapat" data-i18n="nav_team">Csapat</a>
+        <a class="nav-link" href="#partnereink" data-i18n="nav_partners">Partnereink</a>
         <a class="nav-link" href="#dijazas" data-i18n="nav_pricing">Díjazás</a>
         <a class="nav-link" href="#kapcsolat" data-i18n="nav_contact">Kapcsolat</a>
       </nav>
@@ -1775,7 +1935,9 @@
     <li><a href="#bemutatkozas" data-i18n="nav_intro">Bemutatkozás</a></li>
     <li><a href="#szolgaltatasok" data-i18n="nav_services">Szolgáltatások</a></li>
     <li><a href="#folyamat" data-i18n="nav_process">Így dolgozunk</a></li>
-    <li><a href="#csapat" data-i18n="nav_team">Csapat</a></li>
+    <li><a href="#csapat" data-i18n="nav_team">Csapat</a>
+          <a href="#partnereink" data-i18n="nav_partners">Partnereink</a></li>
+    <li><a href="#partnereink" data-i18n="nav_partners">Partnereink</a></li>
     <li><a href="#dijazas" data-i18n="nav_pricing">Díjazás</a></li>
     <li><a href="#kapcsolat" data-i18n="nav_contact">Kapcsolat</a></li>
   </ul>
@@ -2192,6 +2354,112 @@
   </div>
 </section>
 
+  <!-- ═════════════════════════════════════════════════════════════
+       PARTNERS SECTION
+  ══════════════════════════════════════════════════════════════ -->
+  <section class="section partners-section" id="partnereink">
+    <div class="container">
+      <div class="section-head text-center">
+        <span class="badge" data-i18n="partners_badge">Stratégiai szövetség</span>
+        <h2 class="section-title" data-i18n="partners_title">Kiemelt Szakmai Partnereink</h2>
+        <p class="section-lead" data-i18n="partners_lead">
+          Pályázati és cégvezetési munkánk sikerét elismert jogi, közbeszerzési, könyvvizsgálói és technológiai partnereink szakértelmével támogatjuk.
+        </p>
+      </div>
+
+      <div class="partners-grid">
+        <!-- Partner 1: Nessum Bt. -->
+        <article class="partner-card">
+          <div class="partner-card-header">
+            <span class="partner-badge" data-i18n="partner_1_badge">Közbeszerzés</span>
+          </div>
+          <div class="partner-logo-box">
+            <img src="./assets/partners/nessum.png" alt="Nessum Betéti Társaság logo" class="partner-logo-img logo-nessum" loading="lazy">
+          </div>
+          <div class="partner-card-body">
+            <h3 class="partner-name">Nessum Bt.</h3>
+            <p class="partner-desc" data-i18n="partner_1_desc">
+              Teljes körű közbeszerzési eljárások lebonyolítása, uniós és hazai ajánlattételi támogatás, tender menedzsment.
+            </p>
+          </div>
+          <div class="partner-card-footer">
+            <a href="https://nessum.hu/" target="_blank" rel="noopener noreferrer" class="partner-link" id="partnerLinkNessum" aria-label="Nessum Bt. weboldalának megnyitása">
+              <span data-i18n="partner_visit_btn">Weboldal megtekintése</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Partner 2: Dr. Györkös Roland István -->
+        <article class="partner-card">
+          <div class="partner-card-header">
+            <span class="partner-badge" data-i18n="partner_2_badge">Ingatlan- & Cégjog</span>
+          </div>
+          <div class="partner-logo-box">
+            <img src="./assets/partners/gyorkos-cimer.png" alt="Dr. Györkös Roland István Ügyvéd címere" class="partner-logo-img logo-gyorkos" loading="lazy">
+          </div>
+          <div class="partner-card-body">
+            <h3 class="partner-name">Dr. Györkös Roland István</h3>
+            <p class="partner-desc" data-i18n="partner_2_desc">
+              Ingatlanjogi és társasági jogi képviselet, cégeljárások, szerződéscsomagok és polgári peres ügyek országos hatáskörrel.
+            </p>
+          </div>
+          <div class="partner-card-footer">
+            <a href="https://www.gyorkosugyved.hu/" target="_blank" rel="noopener noreferrer" class="partner-link" aria-label="Dr. Györkös Roland István Ügyvéd weboldalának megnyitása">
+              <span data-i18n="partner_visit_btn">Weboldal megtekintése</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Partner 3: KORE-Tax -->
+        <article class="partner-card">
+          <div class="partner-card-header">
+            <span class="partner-badge" data-i18n="partner_3_badge">Könyvelés & Adó</span>
+          </div>
+          <div class="partner-logo-box">
+            <img src="./assets/partners/kore-tax.svg" alt="KORE-Tax Könyvelőiroda logo" class="partner-logo-img logo-kore" loading="lazy">
+          </div>
+          <div class="partner-card-body">
+            <h3 class="partner-name">KORE-Tax Könyvelőiroda</h3>
+            <p class="partner-desc" data-i18n="partner_3_desc">
+              Komplex könyvelés, adótanácsadás, bérszámfejtés és pénzügyi átvilágítás a stabil vállalati működésért.
+            </p>
+          </div>
+          <div class="partner-card-footer">
+            <a href="https://kore-tax.hu/" target="_blank" rel="noopener noreferrer" class="partner-link" aria-label="KORE-Tax Könyvelőiroda weboldalának megnyitása">
+              <span data-i18n="partner_visit_btn">Weboldal megtekintése</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Partner 4: SBSA Laboratory -->
+        <article class="partner-card">
+          <div class="partner-card-header">
+            <span class="partner-badge" data-i18n="partner_4_badge">Biztonságtechnika</span>
+          </div>
+          <div class="partner-logo-box dark-box">
+            <img src="./assets/partners/sbsa.png" alt="SBSA Laboratory logo" class="partner-logo-img logo-sbsa" loading="lazy">
+          </div>
+          <div class="partner-card-body">
+            <h3 class="partner-name">SBSA Laboratory™</h3>
+            <p class="partner-desc" data-i18n="partner_4_desc">
+              Központi szolgáltatási és technológiai kapu: hitelesítés, biometrikus biztonság, munkaerő- és folyamatvédelem.
+            </p>
+          </div>
+          <div class="partner-card-footer">
+            <a href="https://home.sbsalaboratory.tech/hu" target="_blank" rel="noopener noreferrer" class="partner-link" id="partnerLinkSbsa" aria-label="SBSA Laboratory weboldalának megnyitása">
+              <span data-i18n="partner_visit_btn">Weboldal megtekintése</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
 <!-- ── SECTION VII: KAPCSOLAT & FORMA (CONTACT) ── -->
 <section class="section section-alt" id="kapcsolat">
   <div class="container">
@@ -2319,6 +2587,7 @@
         <a href="#folyamat" data-i18n="nav_process">Így dolgozunk</a>
         <a href="#dijazas" data-i18n="nav_pricing">Díjazás</a>
         <a href="#csapat" data-i18n="nav_team">Csapat</a>
+          <a href="#partnereink" data-i18n="nav_partners">Partnereink</a>
         <a href="mailto:info@atva.hu">info@atva.hu</a>
       </div>
     </div>
@@ -2345,6 +2614,19 @@
         nav_services: "Szolgáltatások",
         nav_process: "Így dolgozunk",
         nav_team: "Csapat",
+        nav_partners: "Partnereink",
+        partners_badge: "Stratégiai szövetség",
+        partners_title: "Kiemelt Szakmai Partnereink",
+        partners_lead: "Pályázati és cégvezetési munkánk sikerét elismert jogi, közbeszerzési, könyvvizsgálói és technológiai partnereink szakértelmével támogatjuk.",
+        partner_1_badge: "Közbeszerzés",
+        partner_1_desc: "Teljes körű közbeszerzési eljárások lebonyolítása, uniós és hazai ajánlattételi támogatás, tender menedzsment.",
+        partner_2_badge: "Ingatlan- & Cégjog",
+        partner_2_desc: "Ingatlanjogi és társasági jogi képviselet, cégeljárások, szerződéscsomagok és polgári peres ügyek országos hatáskörrel.",
+        partner_3_badge: "Könyvelés & Adó",
+        partner_3_desc: "Komplex könyvelés, adótanácsadás, bérszámfejtés és pénzügyi átvilágítás a stabil vállalati működésért.",
+        partner_4_badge: "Biztonságtechnika",
+        partner_4_desc: "Központi szolgáltatási és technológiai kapu: hitelesítés, biometrikus biztonság, munkaerő- és folyamatvédelem.",
+        partner_visit_btn: "Weboldal megtekintése",
         nav_pricing: "Díjazás",
         nav_contact: "Kapcsolat",
         btn_header_cta: "Kapcsolatfelvétel",
@@ -2491,6 +2773,19 @@
         nav_services: "Services",
         nav_process: "How We Work",
         nav_team: "Team",
+        nav_partners: "Partners",
+        partners_badge: "Strategic Alliance",
+        partners_title: "Our Trusted Strategic Partners",
+        partners_lead: "We reinforce our grant writing and management consultancy with the specialized expertise of top-tier legal, procurement, tax, and technological partners.",
+        partner_1_badge: "Public Procurement",
+        partner_1_desc: "Full-scale EU and domestic public procurement management, tender preparation, and compliance advisory.",
+        partner_2_badge: "Real Estate & Corporate Law",
+        partner_2_desc: "Real estate transaction contracts, corporate proceedings, commercial litigation, and legal audits nationwide.",
+        partner_3_badge: "Accounting & Tax Advisory",
+        partner_3_desc: "Comprehensive accounting, strategic tax advisory, payroll administration, and financial due diligence.",
+        partner_4_badge: "Security & Safety Tech",
+        partner_4_desc: "Central gateway for verification, biometric security platforms, workforce authentication, and safety systems.",
+        partner_visit_btn: "Visit Website",
         nav_pricing: "Pricing",
         nav_contact: "Contact",
         btn_header_cta: "Get in Touch",
