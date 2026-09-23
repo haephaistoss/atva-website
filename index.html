@@ -3937,52 +3937,53 @@ nav_intro: "About Us",
         };
 
         try {
-          // 1. Try local serverless endpoint /api/contact
-          let res = await fetch('/api/contact', {
+          let isSuccess = false;
+
+          // 1. Direct FormSubmit AJAX submission from browser (instant, verified)
+          const formSubmitPayload = {
+            "Név / Full Name": nameVal,
+            "E-mail": emailVal,
+            "Telefonszám / Phone": phoneVal || 'Nem adott meg',
+            "Cégnév / Company": companyVal || 'Nem adott meg',
+            "Érdeklődési terület / Area": serviceVal || 'Egyéb',
+            "Üzenet / Message": messageVal,
+            "_subject": `Új Cégdoktor megkeresés: ${nameVal} (${companyVal || 'Magánszemély'})`,
+            "_replyto": emailVal,
+            "_template": "table",
+            "_captcha": "false"
+          };
+          if (honeyVal) formSubmitPayload._honey = honeyVal;
+
+          let res = await fetch('https://formsubmit.co/ajax/info@cegdoktor.hu', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               'Accept': 'application/json'
             },
-            body: JSON.stringify(payload)
+            body: JSON.stringify(formSubmitPayload)
           }).catch(() => null);
 
-          let isSuccess = false;
           if (res && res.ok) {
-            const data = await res.json().catch(() => ({}));
-            if (data.success === 'true' || data.success === true || data.status === 'success') {
+            const fbData = await res.json().catch(() => ({}));
+            if (fbData.success === 'true' || fbData.success === true) {
               isSuccess = true;
             }
           }
 
-          // 2. Fallback directly to FormSubmit from browser if needed
+          // 2. Fallback to /api/contact endpoint if needed
           if (!isSuccess) {
-            const fallbackPayload = {
-              "Név / Full Name": nameVal,
-              "E-mail": emailVal,
-              "Telefonszám / Phone": phoneVal || 'Nem adott meg',
-              "Cégnév / Company": companyVal || 'Nem adott meg',
-              "Érdeklődési terület / Area": serviceVal || 'Egyéb',
-              "Üzenet / Message": messageVal,
-              "_subject": `Új Cégdoktor megkeresés: ${nameVal} (${companyVal || 'Magánszemély'})`,
-              "_replyto": emailVal,
-              "_template": "table",
-              "_captcha": "false"
-            };
-            if (honeyVal) fallbackPayload._honey = honeyVal;
-
-            const fallbackRes = await fetch('https://formsubmit.co/ajax/info@cegdoktor.hu', {
+            const apiRes = await fetch('/api/contact', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
               },
-              body: JSON.stringify(fallbackPayload)
-            });
+              body: JSON.stringify(payload)
+            }).catch(() => null);
 
-            if (fallbackRes.ok) {
-              const fbData = await fallbackRes.json().catch(() => ({}));
-              if (fbData.success === 'true' || fbData.success === true) {
+            if (apiRes && apiRes.ok) {
+              const apiData = await apiRes.json().catch(() => ({}));
+              if (apiData.success === 'true' || apiData.success === true || apiData.status === 'success') {
                 isSuccess = true;
               }
             }

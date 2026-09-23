@@ -18,14 +18,13 @@ export default async function handler(req, res) {
       try {
         body = JSON.parse(body);
       } catch (e) {
-        // ignore parse error, will fail validation below if empty
+        // ignore parse error
       }
     }
     const { name, email, phone, company, service, message, _honey } = body || {};
 
     // Spam honeypot detection
     if (_honey) {
-      // Silently succeed for bots
       return res.status(200).json({ success: true, message: 'Message received' });
     }
 
@@ -52,13 +51,25 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Origin': 'https://cegdoktor.hu',
-        'Referer': 'https://cegdoktor.hu/'
+        'Referer': 'https://cegdoktor.hu/',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
       },
       body: JSON.stringify(payload)
     });
 
-    const data = await response.json();
-    return res.status(response.status).json(data);
+    const rawText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch (e) {
+      if (response.ok) {
+        data = { success: true, message: 'Message forwarded' };
+      } else {
+        data = { success: false, message: 'Upstream gateway error' };
+      }
+    }
+
+    return res.status(response.ok ? 200 : response.status).json(data);
   } catch (err) {
     console.error('Contact form submission error:', err);
     return res.status(500).json({ success: false, message: err.message || 'Hiba történt a küldés során' });
