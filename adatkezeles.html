@@ -9,6 +9,22 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
+  /* Intercept Fraunces quirky decorative ampersand and use classic serif ampersand */
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('serif');
+    font-weight: 100 900;
+    font-style: normal;
+    unicode-range: U+0026;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia Italic'), local('Georgia'), local('Baskerville Italic'), local('Times New Roman Italic'), local('serif');
+    font-weight: 100 900;
+    font-style: italic;
+    unicode-range: U+0026;
+  }
+
   *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -427,7 +443,7 @@
   <div class="container">
     <!-- Hero / Document Title -->
     <div class="doc-hero">
-      <div class="badge-editorial" data-i18n="doc_badge">Adatvédelem & GDPR Megfelelőség</div>
+      <div class="badge-editorial" data-i18n="doc_badge">Adatvédelem és GDPR-megfelelőség</div>
       <h1 class="doc-title" data-i18n="doc_title">Általános Adatvédelmi Tájékoztató</h1>
       <p class="doc-lead" data-i18n="doc_subtitle">
         az ATVA-Consulting Szolgáltató és Kereskedelmi Kft.-nél végzett adatkezelésekhez az átlátható tájékoztatás jogának teljesítése érdekében.
@@ -470,7 +486,7 @@
 
     <!-- Quick Navigation (TOC) -->
     <nav class="toc-nav" aria-label="Gyorsnavigáció">
-      <div class="toc-title" data-i18n="toc_label">Tartalomjegyzék & Gyorsnavigáció</div>
+      <div class="toc-title" data-i18n="toc_label">Tartalomjegyzék és gyorsnavigáció</div>
       <ul class="toc-list">
         <li><a href="#sec-1" data-i18n="toc_1">I. Jogszabályi háttér</a></li>
         <li><a href="#sec-2" data-i18n="toc_2">II. Adatkezelő adatai</a></li>
@@ -478,7 +494,7 @@
         <li><a href="#sec-4" data-i18n="toc_4">IV. Adatkezelés célja</a></li>
         <li><a href="#sec-5" data-i18n="toc_5">V. Kezelt adatok köre</a></li>
         <li><a href="#sec-6" data-i18n="toc_6">VI. Adatkezelés időtartama</a></li>
-        <li><a href="#sec-7" data-i18n="toc_7">VII. Címzettek & Adatfeldolgozók</a></li>
+        <li><a href="#sec-7" data-i18n="toc_7">VII. Címzettek és adatfeldolgozók</a></li>
         <li><a href="#sec-8" data-i18n="toc_8">VIII. Érintetti jogok</a></li>
         <li><a href="#sec-9" data-i18n="toc_9">IX. Jogorvoslati lehetőségek</a></li>
       </ul>
@@ -704,7 +720,7 @@
       hu: {
         page_title: "Adatkezelési Tájékoztató — Cégdoktor · ATVA-Consulting Kft.",
         btn_home: "Főoldal",
-        doc_badge: "Adatvédelem & GDPR Megfelelőség",
+        doc_badge: "Adatvédelem és GDPR-megfelelőség",
         doc_title: "Általános Adatvédelmi Tájékoztató",
         doc_subtitle: "az ATVA-Consulting Szolgáltató és Kereskedelmi Kft.-nél végzett adatkezelésekhez az átlátható tájékoztatás jogának teljesítése érdekében.",
         box_header: "Hivatalos Adatkezelői Adatok",
@@ -714,14 +730,14 @@
         label_tax: "Adószám",
         label_officer: "Adatvédelmi felelős / kapcsolattartó",
         label_email: "Hivatalos e-mail cím",
-        toc_label: "Tartalomjegyzék & Gyorsnavigáció",
+        toc_label: "Tartalomjegyzék és gyorsnavigáció",
         toc_1: "I. Jogszabályi háttér",
         toc_2: "II. Adatkezelő adatai",
         toc_3: "III. Adatkezelés jogalapja",
         toc_4: "IV. Adatkezelés célja",
         toc_5: "V. Kezelt adatok köre",
         toc_6: "VI. Adatkezelés időtartama",
-        toc_7: "VII. Címzettek & Adatfeldolgozók",
+        toc_7: "VII. Címzettek és adatfeldolgozók",
         toc_8: "VIII. Érintetti jogok",
         toc_9: "IX. Jogorvoslati lehetőségek"
       },
@@ -775,8 +791,19 @@
       localStorage.setItem('cegdoktor-lang', currentLang);
     }
 
-    const saved = localStorage.getItem('cegdoktor-lang') || 'hu';
-    applyLanguage(saved);
+    function getInitialLanguage() {
+      try {
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        if (urlLang === 'en' || urlLang === 'hu') return urlLang;
+      } catch (e) {}
+      const saved = localStorage.getItem('cegdoktor-lang');
+      if (saved === 'en' || saved === 'hu') return saved;
+      const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+      if (browserLang.startsWith('en')) return 'en';
+      return 'hu';
+    }
+
+    applyLanguage(getInitialLanguage());
 
     document.querySelectorAll('[data-lang]').forEach(btn => {
       btn.addEventListener('click', () => {

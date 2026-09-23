@@ -9,6 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   
+  /* ── Clean Ampersand Override ──
+     Replaces Fraunces' quirky cursive ligature glyph with a classic, balanced serif ampersand */
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('Instrument Sans');
+    unicode-range: U+0026;
+    font-style: normal;
+    font-weight: 100 900;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('Instrument Sans');
+    unicode-range: U+0026;
+    font-style: italic;
+    font-weight: 100 900;
+  }
+
   /* ═══════════════════════════════════════════════════════════════
      TIDYFACTOR / STYLER LIQUID GLASS SYSTEM & CAUSTICS ENGINE
   ════════════════════════════════════════════════════════════════ */
@@ -2935,7 +2952,7 @@
   ══════════════════════════════════════════════════════════════ -->
   <section class="section showcase-section" id="palyazati-bemutatok">
     <div class="container">
-      <div class="badge-editorial" data-i18n="showcase_badge">Dokumentáció & Esettanulmányok</div>
+      <div class="badge-editorial" data-i18n="showcase_badge">Dokumentáció és esettanulmányok</div>
       <h2 class="h2-section" data-i18n="showcase_title">Pályázati Anyag Bemutatók</h2>
       <p class="p-lead" style="max-width:780px; margin-bottom:56px;" data-i18n="showcase_lead">
         Betekintés a sikeresen benyújtott és elbírált pályázati dokumentációk felépítésébe, szakmai szerkezetébe és megvalósíthatósági tanulmányaiba.
@@ -2976,7 +2993,7 @@
           <a href="docs/DIMOP_Plusz_1.2.3_A-24_bemutato.pdf" target="_blank" class="showcase-cover-wrap" aria-label="DIMOP Plusz 1.2.3/A-24 bemutató PDF megnyitása">
             <img src="assets/docs/cover_dimop.png" alt="DIMOP Plusz 1.2.3/A-24 Bemutató" class="showcase-cover-img" loading="lazy">
             <div class="showcase-cover-overlay">
-              <span class="showcase-doc-badge" data-i18n="showcase_card2_tag">Digitalizáció & ERP</span>
+              <span class="showcase-doc-badge" data-i18n="showcase_card2_tag">Digitalizáció és ERP</span>
               <span class="showcase-doc-pages" data-i18n="showcase_card2_meta">12 oldal · PDF</span>
             </div>
             <div class="showcase-hover-hint">
@@ -3005,7 +3022,7 @@
           <a href="docs/KTH_START_bemutato.pdf" target="_blank" class="showcase-cover-wrap" aria-label="KTH START Beruházási Kölcsön bemutató PDF megnyitása">
             <img src="assets/docs/cover_kth.png" alt="KTH START Beruházási Kölcsön Bemutató" class="showcase-cover-img" loading="lazy">
             <div class="showcase-cover-overlay">
-              <span class="showcase-doc-badge" data-i18n="showcase_card3_tag">Turisztika & Vendéglátás</span>
+              <span class="showcase-doc-badge" data-i18n="showcase_card3_tag">Turisztika és vendéglátás</span>
               <span class="showcase-doc-pages" data-i18n="showcase_card3_meta">11 oldal · PDF</span>
             </div>
             <div class="showcase-hover-hint">
@@ -3293,7 +3310,7 @@
 <!-- ── SECTION III: MUNKA STRUKTÚRA & RENDSZEREK ── -->
 <section class="section" id="rendszerek">
   <div class="container">
-    <div class="badge-editorial" data-i18n="systems_label">Működés & Rendszerek</div>
+    <div class="badge-editorial" data-i18n="systems_label">Működés és rendszerek</div>
     <h2 class="h2-section" data-i18n="systems_title">Munka struktúra kezelése szoftverekkel.</h2>
     <p class="p-lead" style="max-width:680px; margin-bottom:48px;" data-i18n="systems_desc">
       A hatékony cégvezetés alapja a transzparens, digitális háttér. Strukturált feladatkezelést és modern ellenőrzési rendszereket valósítunk meg.
@@ -3377,7 +3394,7 @@
           <span class="step-num-badge">3</span>
           <span class="step-line"></span>
         </div>
-        <h3 data-i18n="step_3_name">Elkészítés & Benyújtás</h3>
+        <h3 data-i18n="step_3_name">Elkészítés és benyújtás</h3>
         <p data-i18n="step_3_text">Összeállítjuk a teljes dokumentációt, és határidőre, hibátlanul benyújtjuk.</p>
       </div>
 
@@ -3386,7 +3403,7 @@
           <span class="step-num-badge gold">4</span>
           <span class="step-line"></span>
         </div>
-        <h3 data-i18n="step_4_name">Elbírálás & Folyósítás</h3>
+        <h3 data-i18n="step_4_name">Elbírálás és folyósítás</h3>
         <p data-i18n="step_4_text">Csak sikeres elbírálás vagy folyósítás esetén válik esedékessé a sikerdíj.</p>
       </div>
     </div>
@@ -3396,7 +3413,7 @@
 <!-- ── SECTION VI: CSAPAT (TEAM) ── -->
 <section class="section" id="csapat">
   <div class="container">
-    <div class="badge-editorial" data-i18n="team_label">Csapat & Szakértői Hálózat</div>
+    <div class="badge-editorial" data-i18n="team_label">Csapat és szakértői hálózat</div>
     <h2 class="h2-section" data-i18n="team_title">Szakértői háttér minden területen.</h2>
     <p class="p-lead" style="max-width:680px; margin-bottom:48px;" data-i18n="team_desc">
       Saját csapatunk és megbízható partnereink biztosítják, hogy a jogi, beszerzési és számviteli feladatok a legmagasabb színvonalon valósuljanak meg.
@@ -3467,7 +3484,7 @@
         <!-- Partner 2: Dr. Györkös Roland István -->
         <article class="partner-card">
           <div class="partner-card-header">
-            <span class="partner-badge" data-i18n="partner_2_badge">Ingatlan- & Cégjog</span>
+            <span class="partner-badge" data-i18n="partner_2_badge">Ingatlan- és cégjog</span>
           </div>
           <div class="partner-logo-box">
             <img src="./assets/partners/gyorkos-cimer.png" alt="Dr. Györkös Roland István Ügyvéd címere" class="partner-logo-img logo-gyorkos" loading="lazy">
@@ -3489,7 +3506,7 @@
         <!-- Partner 3: KORE-Tax -->
         <article class="partner-card">
           <div class="partner-card-header">
-            <span class="partner-badge" data-i18n="partner_3_badge">Könyvelés & Adó</span>
+            <span class="partner-badge" data-i18n="partner_3_badge">Könyvelés és adó</span>
           </div>
           <div class="partner-logo-box">
             <img src="./assets/partners/kore-tax.svg" alt="KORE-Tax Könyvelőiroda logo" class="partner-logo-img logo-kore" loading="lazy">
@@ -3587,10 +3604,10 @@
               <label for="contactService" class="form-label" data-i18n="form_service_label">Érdeklődési terület</label>
               <select id="contactService" name="service" class="form-select">
                 <option value="" selected data-i18n="form_opt_default">Kérjük válasszon (opcionális)...</option>
-                <option value="palyazat" data-i18n="form_opt_grants">Pályázatírás & Támogatások (Sikerdíj)</option>
-                <option value="tanacsadas" data-i18n="form_opt_consulting">Cégvezetési tanácsadás & Működésépítés</option>
+                <option value="palyazat" data-i18n="form_opt_grants">Pályázatírás és támogatások (Sikerdíj)</option>
+                <option value="tanacsadas" data-i18n="form_opt_consulting">Cégvezetési tanácsadás és működésépítés</option>
                 <option value="cegmentes" data-i18n="form_opt_rescue">Cégmentés (Önrevíziók, Hivatalos dokumentációk)</option>
-                <option value="konyvelesi-tanacsadas" data-i18n="form_opt_acct_consult">Könyvelési tanácsadás (Pályázati & közbeszerzési felkészítés)</option>
+                <option value="konyvelesi-tanacsadas" data-i18n="form_opt_acct_consult">Könyvelési tanácsadás (Pályázati és közbeszerzési felkészítés)</option>
                 <option value="projekt" data-i18n="form_opt_pm">Projektmenedzsment</option>
                 <option value="hitelek" data-i18n="form_opt_loans">Kedvező hitelek (Széchenyi Kártya)</option>
                 <option value="kozbeszerzes" data-i18n="form_opt_procure">Közbeszerzési szakjogászi felügyelet</option>
@@ -3695,18 +3712,18 @@
       hu: {
         page_title: "Cégdoktor — Pályázatírás · Cégvezetési Tanácsadás · Projektmenedzsment",
                 nav_showcase: "Anyagbemutatók",
-        showcase_badge: "Dokumentáció & Esettanulmányok",
+        showcase_badge: "Dokumentáció és esettanulmányok",
         showcase_title: "Pályázati Anyag Bemutatók",
         showcase_lead: "Betekintés az általunk összeállított, sikeresen benyújtott és elbírált szakmai pályázati dokumentációkba és hitelprogramokba.",
         showcase_card1_tag: "KKV Finanszírozás 2026",
         showcase_card1_title: "Széchenyi Hitel Konstrukciók MAX+",
         showcase_card1_desc: "Egyszerű, közérthető áttekintő a Széchenyi Kártya Program MAX+ konstrukcióiról (Folyószámlahitel, Likviditási hitel, Beruházási hitel, Lízing, Agrár): 1M – 750M Ft keretösszeg, 3,00%-tól fix kamat.",
         showcase_card1_meta: "16 oldal · PDF",
-        showcase_card2_tag: "Digitalizáció & ERP",
+        showcase_card2_tag: "Digitalizáció és ERP",
         showcase_card2_title: "DIMOP Plusz 1.2.3/A-24 — Vállalati Digitalizáció",
         showcase_card2_desc: "Digitalizációs hiteltermék KKV-knak: 3–20 millió Ft finanszírozás, akár 50% vissza nem térítendő támogatással, 0% kamattal, felhő-, CRM- és ERP-bevezetési útmutatóval.",
         showcase_card2_meta: "12 oldal · PDF",
-        showcase_card3_tag: "Turisztika & Vendéglátás",
+        showcase_card3_tag: "Turisztika és vendéglátás",
         showcase_card3_title: "KTH START Beruházási Kölcsön",
         showcase_card3_desc: "Tájékoztató összefoglaló turisztikai és vendéglátó vállalkozásoknak: 1–10 millió Ft kölcsön, akár 50% vissza nem térítendő támogatással, fix 3,00% kamattal és 12 hónap türelmi idővel.",
         showcase_card3_meta: "11 oldal · PDF",
@@ -3725,9 +3742,9 @@ nav_intro: "Bemutatkozás",
         partners_lead: "Pályázati és cégvezetési munkánk sikerét elismert jogi, közbeszerzési, könyvvizsgálói és technológiai partnereink szakértelmével támogatjuk.",
         partner_1_badge: "Közbeszerzés",
         partner_1_desc: "Teljes körű közbeszerzési eljárások lebonyolítása, uniós és hazai ajánlattételi támogatás, tender menedzsment.",
-        partner_2_badge: "Ingatlan- & Cégjog",
+        partner_2_badge: "Ingatlan- és cégjog",
         partner_2_desc: "Ingatlanjogi és társasági jogi képviselet, cégeljárások, szerződéscsomagok és polgári peres ügyek országos hatáskörrel.",
-        partner_3_badge: "Könyvelés & Adó",
+        partner_3_badge: "Könyvelés és adó",
         partner_3_desc: "Komplex könyvelés, adótanácsadás, bérszámfejtés és pénzügyi átvilágítás a stabil vállalati működésért.",
         partner_4_badge: "Biztonságtechnika",
         partner_4_desc: "Központi szolgáltatási és technológiai kapu: hitelesítés, biometrikus biztonság, munkaerő- és folyamatvédelem.",
@@ -3812,7 +3829,7 @@ nav_intro: "Bemutatkozás",
         svc_accounting_feat1: "Előkészítés pályázati vagy közbeszerzési részvételre",
         svc_accounting_feat2: "Pénzügyi kimutatások és mérlegstruktúra optimalizálása",
         
-        systems_label: "Működés & Rendszerek",
+        systems_label: "Működés és rendszerek",
         systems_title: "Munka struktúra kezelése szoftverekkel.",
         systems_desc: "A hatékony cégvezetés alapja a transzparens, digitális háttér. Strukturált feladatkezelést és modern ellenőrzési rendszereket valósítunk meg.",
         proc_task_title: "Belső feladatkezelési rendszer",
@@ -3835,12 +3852,12 @@ nav_intro: "Bemutatkozás",
         step_1_text: "Megbeszéljük a céljait, a vállalkozás helyzetét és az operatív kihívásokat.",
         step_2_name: "Felmérés",
         step_2_text: "Kiválasztjuk a legmegfelelőbb pályázatot, hitelkonstrukciót vagy szoftveres struktúrát.",
-        step_3_name: "Elkészítés & Benyújtás",
+        step_3_name: "Elkészítés és benyújtás",
         step_3_text: "Összeállítjuk a teljes dokumentációt, és határidőre, hibátlanul benyújtjuk.",
-        step_4_name: "Elbírálás & Folyósítás",
+        step_4_name: "Elbírálás és folyósítás",
         step_4_text: "Csak sikeres elbírálás vagy folyósítás esetén válik esedékessé a sikerdíj.",
         
-        team_label: "Csapat & Szakértői Hálózat",
+        team_label: "Csapat és szakértői hálózat",
         team_title: "Szakértői háttér minden területen.",
         team_desc: "Saját csapatunk és megbízható partnereink biztosítják, hogy a jogi, beszerzési és számviteli feladatok a legmagasabb színvonalon valósuljanak meg.",
         team_lawyer_title: "Vállalkozásokra specializálódott ügyvéd",
@@ -3865,10 +3882,10 @@ nav_intro: "Bemutatkozás",
         form_company_ph: "pl. Példa Kft.",
         form_service_label: "Érdeklődési terület",
         form_opt_default: "Kérjük válasszon (opcionális)...",
-        form_opt_grants: "Pályázatírás & Támogatások (Sikerdíj)",
-        form_opt_consulting: "Cégvezetési tanácsadás & Működésépítés",
+        form_opt_grants: "Pályázatírás és támogatások (Sikerdíj)",
+        form_opt_consulting: "Cégvezetési tanácsadás és működésépítés",
         form_opt_rescue: "Cégmentés (Önrevíziók, Hivatalos dokumentációk)",
-        form_opt_acct_consult: "Könyvelési tanácsadás (Pályázati & közbeszerzési felkészítés)",
+        form_opt_acct_consult: "Könyvelési tanácsadás (Pályázati és közbeszerzési felkészítés)",
         form_opt_pm: "Projektmenedzsment",
         form_opt_loans: "Kedvező hitelek (Széchenyi Kártya)",
         form_opt_procure: "Közbeszerzési szakjogászi felügyelet",
@@ -4149,6 +4166,10 @@ nav_intro: "About Us",
     }
 
     function getInitialLanguage() {
+      try {
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        if (urlLang === 'en' || urlLang === 'hu') return urlLang;
+      } catch (e) {}
       const saved = localStorage.getItem('cegdoktor-lang');
       if (saved === 'en' || saved === 'hu') return saved;
       const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
@@ -4523,7 +4544,7 @@ nav_intro: "About Us",
     <div class="privacy-header-titles">
       <span class="privacy-header-badge">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        GDPR &amp; Adatvédelem
+        GDPR és adatvédelem
       </span>
       <h2 id="privacyModalTitle" class="privacy-modal-title">Adatkezelési Tájékoztató</h2>
     </div>
@@ -4561,7 +4582,7 @@ nav_intro: "About Us",
           Piskóti Gergő
         </div>
         <div class="privacy-company-item">
-          <strong>E-mail &amp; Kapcsolat:</strong>
+          <strong>E-mail és kapcsolat:</strong>
           <a href="mailto:info@cegdoktor.hu" style="color:var(--accent-gold); text-decoration:underline;">info@cegdoktor.hu</a>
         </div>
       </div>
