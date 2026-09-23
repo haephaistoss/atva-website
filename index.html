@@ -2316,53 +2316,42 @@
     border-color: var(--accent-gold);
     box-shadow: 0 22px 48px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.16);
   }
-  .showcase-doc-preview {
-    height: 136px;
+  .showcase-cover-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     border-radius: 14px;
-    background: linear-gradient(145deg, #10262A 0%, #16363B 100%);
-    border: 1px solid rgba(217, 164, 65, 0.3);
-    padding: 18px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 22px;
-    position: relative;
     overflow: hidden;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    margin-bottom: 20px;
+    border: 1px solid rgba(217, 164, 65, 0.28);
+    background: #0d1e22;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+    display: block;
+    text-decoration: none;
   }
-  .showcase-doc-preview::before {
-    content: '';
+  .showcase-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.45s var(--ease-spring), filter 0.3s ease;
+  }
+  .showcase-card:hover .showcase-cover-img {
+    transform: scale(1.04);
+  }
+  .showcase-cover-overlay {
     position: absolute;
-    top: 0;
+    bottom: 0;
+    left: 0;
     right: 0;
-    width: 140px;
-    height: 140px;
-    background: radial-gradient(circle at top right, rgba(217, 164, 65, 0.22), transparent 70%);
-    pointer-events: none;
-  }
-  .showcase-doc-top {
+    padding: 12px 14px;
+    background: linear-gradient(180deg, transparent 0%, rgba(10, 22, 26, 0.88) 100%);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
-    z-index: 1;
-  }
-  .showcase-doc-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: rgba(217, 164, 65, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-gold);
-  }
-  .showcase-doc-icon svg {
-    width: 18px;
-    height: 18px;
-    stroke: currentColor;
-    stroke-width: 2;
-    fill: none;
+    gap: 8px;
+    z-index: 2;
   }
   .showcase-doc-badge {
     font-size: 0.72rem;
@@ -2370,20 +2359,48 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--accent-gold);
-    background: rgba(217, 164, 65, 0.14);
-    padding: 3px 9px;
+    background: rgba(217, 164, 65, 0.18);
+    padding: 4px 10px;
     border-radius: 6px;
-    border: 1px solid rgba(217, 164, 65, 0.28);
+    border: 1px solid rgba(217, 164, 65, 0.35);
+    backdrop-filter: blur(6px);
   }
-  .showcase-doc-meta {
+  .showcase-doc-pages {
     font-family: ui-monospace, SFMono-Regular, monospace;
-    font-size: 0.78rem;
-    color: rgba(245, 240, 230, 0.75);
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: rgba(245, 240, 230, 0.95);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 3px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  .showcase-hover-hint {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0;
     display: flex;
     align-items: center;
-    gap: 6px;
-    position: relative;
-    z-index: 1;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(12, 26, 30, 0.88);
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s ease, transform 0.3s var(--ease-spring);
+    z-index: 3;
+    pointer-events: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  .showcase-cover-wrap:hover .showcase-hover-hint {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
   .showcase-title {
     font-family: 'Fraunces', Georgia, serif;
@@ -2399,30 +2416,61 @@
     color: var(--fg-muted);
     margin-bottom: 22px;
   }
-  .showcase-status-badge {
+  .showcase-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+    width: 100%;
+  }
+  .showcase-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    font-size: 0.78rem;
+    gap: 10px;
+    padding: 11px 18px;
+    border-radius: 12px;
+    font-size: 0.88rem;
     font-weight: 600;
-    background: rgba(217, 164, 65, 0.12);
-    color: var(--accent-amber);
-    border: 1px solid rgba(217, 164, 65, 0.3);
-    margin-top: auto;
-    width: fit-content;
-  }
-  [data-theme="dark"] .showcase-status-badge {
-    background: rgba(217, 164, 65, 0.15);
-    color: var(--accent-gold);
-  }
-  .showcase-status-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
     background: var(--accent-gold);
-    box-shadow: 0 0 8px var(--accent-gold);
+    color: #101c20;
+    text-decoration: none;
+    flex: 1;
+    justify-content: flex-start;
+    box-shadow: 0 4px 14px rgba(217, 164, 65, 0.28);
+    transition: all 0.25s ease;
+  }
+  .showcase-btn:hover {
+    background: #e6b34b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(217, 164, 65, 0.45);
+    color: #0c181b;
+  }
+  .showcase-btn-arrow {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+  .showcase-btn:hover .showcase-btn-arrow {
+    transform: translate(2px, -2px);
+  }
+  .showcase-dl-icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-sec-bg);
+    border: 1px solid var(--btn-sec-border);
+    color: var(--fg);
+    text-decoration: none;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+  .showcase-dl-icon-btn:hover {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    transform: translateY(-2px);
+    background: rgba(217, 164, 65, 0.12);
   }
   .showcase-banner {
     margin-top: 48px;
@@ -2572,7 +2620,7 @@
           <span class="italic-accent" data-i18n="hero_h1_line2">ha sikerül.</span>
         </h1>
         <p class="p-lead" data-lead-text data-i18n="hero_desc">
-          A Cégdoktor pályázatot ír, projektmenedzsmentet és cégvezetési tanácsadást nyújt, valamint közbeszerzésben és finanszírozásban segít. Célunk, hogy Ön a szakmájával foglalkozhasson: az adminisztrációt, a szoftveres feladatkezelést és a határidőket mi visszük. A pályázatokat és a finanszírozási ügyeket sikerdíj alapon vállaljuk – előre nem kell fizetnie.
+          A Cégdoktor pályázatot ír, projektmenedzsmentet és cégvezetési tanácsadást nyújt, valamint közbeszerzésben és finanszírozásban segít. Célunk, hogy Ön a szakmájával foglalkozhasson: az adminisztrációt, a szoftveres feladatkezelést és a határidőket mi visszük. Pályázatokkal kapcsolatban minden ügyintézést sikerdíj alapon vállalunk.
         </p>
         <div class="hero-cta-group">
           <a href="#kapcsolat" class="btn btn-primary">
@@ -2643,66 +2691,90 @@
       </p>
 
       <div class="showcase-grid">
-        <!-- Card 1: GINOP Plusz -->
+        <!-- Card 1: Széchenyi Hitel Konstrukciók -->
         <article class="showcase-card">
-          <div class="showcase-doc-preview">
-            <div class="showcase-doc-top">
-              <span class="showcase-doc-icon">
-                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              </span>
-              <span class="showcase-doc-badge" data-i18n="showcase_card1_tag">Eszközbeszerzés & K+F</span>
+          <a href="docs/Szechenyi_Hitel_Konstrukciok_bemutato.pdf" target="_blank" class="showcase-cover-wrap" aria-label="Széchenyi Hitel Konstrukciók MAX+ bemutató PDF megnyitása">
+            <img src="assets/docs/cover_szechenyi.png" alt="Széchenyi Hitel Konstrukciók Bemutató" class="showcase-cover-img" loading="lazy">
+            <div class="showcase-cover-overlay">
+              <span class="showcase-doc-badge" data-i18n="showcase_card1_tag">KKV Finanszírozás 2026</span>
+              <span class="showcase-doc-pages" data-i18n="showcase_card1_meta">16 oldal · PDF</span>
             </div>
-            <div class="showcase-doc-meta" data-i18n="showcase_card1_meta">GINOP_Plusz_Minta.pdf · 42 oldal</div>
-          </div>
-          <h3 class="showcase-title" data-i18n="showcase_card1_title">GINOP Plusz — Technológiafejlesztés</h3>
+            <div class="showcase-hover-hint">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span data-i18n="showcase_hint_preview">Megnyitás</span>
+            </div>
+          </a>
+          <h3 class="showcase-title" data-i18n="showcase_card1_title">Széchenyi Hitel Konstrukciók MAX+</h3>
           <p class="showcase-desc" data-i18n="showcase_card1_desc">
-            Komplex beruházási terv, pénzügyi és műszaki megvalósíthatósági tanulmányok részletes bemutatása.
+            Egyszerű, közérthető áttekintő a Széchenyi Kártya Program MAX+ konstrukcióiról (Folyószámlahitel, Likviditási hitel, Beruházási hitel, Lízing, Agrár): 1M – 750M Ft keretösszeg, 3,00%-tól fix kamat.
           </p>
-          <div class="showcase-status-badge">
-            <span class="showcase-status-dot"></span>
-            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          <div class="showcase-actions">
+            <a href="docs/Szechenyi_Hitel_Konstrukciok_bemutato.pdf" target="_blank" class="showcase-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span data-i18n="showcase_btn_view">Dokumentum megnyitása (PDF)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="showcase-btn-arrow"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <a href="docs/Szechenyi_Hitel_Konstrukciok_bemutato.pdf" download="Szechenyi_Hitel_Konstrukciok_bemutato.pdf" class="showcase-dl-icon-btn" title="Letöltés" aria-label="Széchenyi Hitel Konstrukciók letöltése">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
           </div>
         </article>
 
-        <!-- Card 2: Energetika -->
+        <!-- Card 2: DIMOP Plusz 1.2.3/A-24 -->
         <article class="showcase-card">
-          <div class="showcase-doc-preview">
-            <div class="showcase-doc-top">
-              <span class="showcase-doc-icon">
-                <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-              </span>
-              <span class="showcase-doc-badge" data-i18n="showcase_card2_tag">Energetika & Zöld Átállás</span>
+          <a href="docs/DIMOP_Plusz_1.2.3_A-24_bemutato.pdf" target="_blank" class="showcase-cover-wrap" aria-label="DIMOP Plusz 1.2.3/A-24 bemutató PDF megnyitása">
+            <img src="assets/docs/cover_dimop.png" alt="DIMOP Plusz 1.2.3/A-24 Bemutató" class="showcase-cover-img" loading="lazy">
+            <div class="showcase-cover-overlay">
+              <span class="showcase-doc-badge" data-i18n="showcase_card2_tag">Digitalizáció & ERP</span>
+              <span class="showcase-doc-pages" data-i18n="showcase_card2_meta">12 oldal · PDF</span>
             </div>
-            <div class="showcase-doc-meta" data-i18n="showcase_card2_meta">KEHOP_Energetika_Minta.pdf · 36 oldal</div>
-          </div>
-          <h3 class="showcase-title" data-i18n="showcase_card2_title">Energiahatékonysági Korszerűsítés</h3>
+            <div class="showcase-hover-hint">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span data-i18n="showcase_hint_preview">Megnyitás</span>
+            </div>
+          </a>
+          <h3 class="showcase-title" data-i18n="showcase_card2_title">DIMOP Plusz 1.2.3/A-24 — Vállalati Digitalizáció</h3>
           <p class="showcase-desc" data-i18n="showcase_card2_desc">
-            Energetikai auditok, CO2-kibocsátás csökkentési modellezés és megtérülési kalkulációk mintája.
+            Digitalizációs hiteltermék KKV-knak: 3–20 millió Ft finanszírozás, akár 50% vissza nem térítendő támogatással, 0% kamattal, felhő-, CRM- és ERP-bevezetési útmutatóval.
           </p>
-          <div class="showcase-status-badge">
-            <span class="showcase-status-dot"></span>
-            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          <div class="showcase-actions">
+            <a href="docs/DIMOP_Plusz_1.2.3_A-24_bemutato.pdf" target="_blank" class="showcase-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span data-i18n="showcase_btn_view">Dokumentum megnyitása (PDF)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="showcase-btn-arrow"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <a href="docs/DIMOP_Plusz_1.2.3_A-24_bemutato.pdf" download="DIMOP_Plusz_1.2.3_A-24_bemutato.pdf" class="showcase-dl-icon-btn" title="Letöltés" aria-label="DIMOP Plusz 1.2.3/A-24 letöltése">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
           </div>
         </article>
 
-        <!-- Card 3: Digitalizáció -->
+        <!-- Card 3: KTH START Beruházási Kölcsön -->
         <article class="showcase-card">
-          <div class="showcase-doc-preview">
-            <div class="showcase-doc-top">
-              <span class="showcase-doc-icon">
-                <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-              </span>
-              <span class="showcase-doc-badge" data-i18n="showcase_card3_tag">Digitalizáció & ERP</span>
+          <a href="docs/KTH_START_bemutato.pdf" target="_blank" class="showcase-cover-wrap" aria-label="KTH START Beruházási Kölcsön bemutató PDF megnyitása">
+            <img src="assets/docs/cover_kth.png" alt="KTH START Beruházási Kölcsön Bemutató" class="showcase-cover-img" loading="lazy">
+            <div class="showcase-cover-overlay">
+              <span class="showcase-doc-badge" data-i18n="showcase_card3_tag">Turisztika & Vendéglátás</span>
+              <span class="showcase-doc-pages" data-i18n="showcase_card3_meta">11 oldal · PDF</span>
             </div>
-            <div class="showcase-doc-meta" data-i18n="showcase_card3_meta">DIMOP_Digitalizacio_Minta.pdf · 28 oldal</div>
-          </div>
-          <h3 class="showcase-title" data-i18n="showcase_card3_title">DIMOP Plusz — Vállalati Digitalizáció</h3>
+            <div class="showcase-hover-hint">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+              <span data-i18n="showcase_hint_preview">Megnyitás</span>
+            </div>
+          </a>
+          <h3 class="showcase-title" data-i18n="showcase_card3_title">KTH START Beruházási Kölcsön</h3>
           <p class="showcase-desc" data-i18n="showcase_card3_desc">
-            Felhőalapú rendszerek, folyamatautomatizáció és digitális transzformációs projektterv struktúra.
+            Tájékoztató összefoglaló turisztikai és vendéglátó vállalkozásoknak: 1–10 millió Ft kölcsön, akár 50% vissza nem térítendő támogatással, fix 3,00% kamattal és 12 hónap türelmi idővel.
           </p>
-          <div class="showcase-status-badge">
-            <span class="showcase-status-dot"></span>
-            <span data-i18n="showcase_status_soon">Hamarosan feltöltésre kerül</span>
+          <div class="showcase-actions">
+            <a href="docs/KTH_START_bemutato.pdf" target="_blank" class="showcase-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              <span data-i18n="showcase_btn_view">Dokumentum megnyitása (PDF)</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="showcase-btn-arrow"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <a href="docs/KTH_START_bemutato.pdf" download="KTH_START_bemutato.pdf" class="showcase-dl-icon-btn" title="Letöltés" aria-label="KTH START Beruházási Kölcsön letöltése">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            </a>
           </div>
         </article>
       </div>
@@ -3319,20 +3391,21 @@
                 nav_showcase: "Anyagbemutatók",
         showcase_badge: "Dokumentáció & Esettanulmányok",
         showcase_title: "Pályázati Anyag Bemutatók",
-        showcase_lead: "Betekintés a sikeresen benyújtott és elbírált pályázati dokumentációk felépítésébe, szakmai szerkezetébe és megvalósíthatósági tanulmányaiba.",
-        showcase_card1_tag: "Eszközbeszerzés & K+F",
-        showcase_card1_title: "GINOP Plusz — Technológiafejlesztés",
-        showcase_card1_desc: "Komplex beruházási terv, pénzügyi és műszaki megvalósíthatósági tanulmányok részletes bemutatása.",
-        showcase_card1_meta: "GINOP_Plusz_Minta.pdf · 42 oldal",
-        showcase_card2_tag: "Energetika & Zöld Átállás",
-        showcase_card2_title: "Energiahatékonysági Korszerűsítés",
-        showcase_card2_desc: "Energetikai auditok, CO2-kibocsátás csökkentési modellezés és megtérülési kalkulációk mintája.",
-        showcase_card2_meta: "KEHOP_Energetika_Minta.pdf · 36 oldal",
-        showcase_card3_tag: "Digitalizáció & ERP",
-        showcase_card3_title: "DIMOP Plusz — Vállalati Digitalizáció",
-        showcase_card3_desc: "Felhőalapú rendszerek, folyamatautomatizáció és digitális transzformációs projektterv struktúra.",
-        showcase_card3_meta: "DIMOP_Digitalizacio_Minta.pdf · 28 oldal",
-        showcase_status_soon: "Hamarosan feltöltésre kerül",
+        showcase_lead: "Betekintés az általunk összeállított, sikeresen benyújtott és elbírált szakmai pályázati dokumentációkba és hitelprogramokba.",
+        showcase_card1_tag: "KKV Finanszírozás 2026",
+        showcase_card1_title: "Széchenyi Hitel Konstrukciók MAX+",
+        showcase_card1_desc: "Egyszerű, közérthető áttekintő a Széchenyi Kártya Program MAX+ konstrukcióiról (Folyószámlahitel, Likviditási hitel, Beruházási hitel, Lízing, Agrár): 1M – 750M Ft keretösszeg, 3,00%-tól fix kamat.",
+        showcase_card1_meta: "16 oldal · PDF",
+        showcase_card2_tag: "Digitalizáció & ERP",
+        showcase_card2_title: "DIMOP Plusz 1.2.3/A-24 — Vállalati Digitalizáció",
+        showcase_card2_desc: "Digitalizációs hiteltermék KKV-knak: 3–20 millió Ft finanszírozás, akár 50% vissza nem térítendő támogatással, 0% kamattal, felhő-, CRM- és ERP-bevezetési útmutatóval.",
+        showcase_card2_meta: "12 oldal · PDF",
+        showcase_card3_tag: "Turisztika & Vendéglátás",
+        showcase_card3_title: "KTH START Beruházási Kölcsön",
+        showcase_card3_desc: "Tájékoztató összefoglaló turisztikai és vendéglátó vállalkozásoknak: 1–10 millió Ft kölcsön, akár 50% vissza nem térítendő támogatással, fix 3,00% kamattal és 12 hónap türelmi idővel.",
+        showcase_card3_meta: "11 oldal · PDF",
+        showcase_hint_preview: "Megnyitás",
+        showcase_btn_view: "Dokumentum megnyitása (PDF)",
         showcase_cta_title: "Egyedi pályázati anyagra kíváncsi?",
         showcase_cta_text: "Személyes vagy online egyeztetés keretében bemutatjuk az Ön iparágára és céljaira szabott mintadokumentációinkat.",
         showcase_cta_btn: "Egyeztetés kérése",
@@ -3360,7 +3433,7 @@ nav_intro: "Bemutatkozás",
         hero_badge: "Tanácsadás · Pályázat · Finanszírozás",
         hero_h1_line1: "Ön csak akkor fizet,",
         hero_h1_line2: "ha sikerül.",
-        hero_desc: "A Cégdoktor pályázatot ír, projektmenedzsmentet és cégvezetési tanácsadást nyújt, valamint közbeszerzésben és finanszírozásban segít. Célunk, hogy Ön a szakmájával foglalkozhasson: az adminisztrációt, a szoftveres feladatkezelést és a határidőket mi visszük. A pályázatokat és a finanszírozási ügyeket sikerdíj alapon vállaljuk – előre nem kell fizetnie.",
+        hero_desc: "A Cégdoktor pályázatot ír, projektmenedzsmentet és cégvezetési tanácsadást nyújt, valamint közbeszerzésben és finanszírozásban segít. Célunk, hogy Ön a szakmájával foglalkozhasson: az adminisztrációt, a szoftveres feladatkezelést és a határidőket mi visszük. Pályázatokkal kapcsolatban minden ügyintézést sikerdíj alapon vállalunk.",
         btn_hero_contact: "Kapcsolatfelvétel",
         btn_hero_services: "Szolgáltatásaink",
         hero_trust_1: "Előre nem kell fizetnie",
@@ -3500,21 +3573,22 @@ nav_intro: "Bemutatkozás",
         page_title: "Cégdoktor — Grant Writing · Business Advisory · Project Management",
                 nav_showcase: "Showcase",
         showcase_badge: "Documentation & Case Studies",
-        showcase_title: "Grant Application Material Showcase",
-        showcase_lead: "An exclusive look into the structure, feasibility studies, and professional methodology of our successfully awarded grant dossiers.",
-        showcase_card1_tag: "Equipment & R&D",
-        showcase_card1_title: "GINOP Plusz — Tech Modernization",
-        showcase_card1_desc: "Comprehensive investment plans, financial projection models, and detailed technical feasibility studies.",
-        showcase_card1_meta: "GINOP_Plusz_Sample.pdf · 42 pages",
-        showcase_card2_tag: "Energy & Sustainability",
-        showcase_card2_title: "Energy Efficiency Modernization",
-        showcase_card2_desc: "Energy audit methodologies, CO2 reduction modeling, and verified financial payback calculations.",
-        showcase_card2_meta: "KEHOP_Energy_Sample.pdf · 36 pages",
-        showcase_card3_tag: "Digitalization & ERP",
-        showcase_card3_title: "DIMOP Plusz — Enterprise Digitalization",
-        showcase_card3_desc: "Cloud migration, workflow automation, and digital transformation proposal architecture.",
-        showcase_card3_meta: "DIMOP_Digital_Sample.pdf · 28 pages",
-        showcase_status_soon: "Full content coming soon",
+        showcase_title: "Grant & Financing Document Showcase",
+        showcase_lead: "An exclusive look into our successfully prepared and submitted grant applications, financial studies, and credit program dossiers.",
+        showcase_card1_tag: "SME Financing 2026",
+        showcase_card1_title: "Széchenyi Credit Program MAX+ Guide",
+        showcase_card1_desc: "Comprehensive guide to the Széchenyi Card MAX+ facilities (Overdraft, Liquidity, Investment, Leasing, Agrar): 1M to 750M HUF limits with fixed rates from 3.00%.",
+        showcase_card1_meta: "16 pages · PDF",
+        showcase_card2_tag: "Digitalization & ERP",
+        showcase_card2_title: "DIMOP Plusz 1.2.3/A-24 — Digitalization",
+        showcase_card2_desc: "Digitalization credit product for SMEs: 3–20M HUF financing with up to 50% non-refundable grant, 0% interest for cloud, CRM, and ERP workflows.",
+        showcase_card2_meta: "12 pages · PDF",
+        showcase_card3_tag: "Tourism & Hospitality",
+        showcase_card3_title: "KTH START Tourism Investment Loan",
+        showcase_card3_desc: "Summary for hospitality and tourism businesses: 1–10M HUF loan with up to 50% non-refundable grant component, fixed 3.00% rate, and 12-month grace period.",
+        showcase_card3_meta: "11 pages · PDF",
+        showcase_hint_preview: "Preview",
+        showcase_btn_view: "Open Document (PDF)",
         showcase_cta_title: "Looking for an industry-specific case study?",
         showcase_cta_text: "During a free introductory consultation, we can present customized grant dossiers tailored to your sector.",
         showcase_cta_btn: "Request Consultation",
@@ -3542,7 +3616,7 @@ nav_intro: "About Us",
         hero_badge: "Advisory · Grants · Financing",
         hero_h1_line1: "You only pay,",
         hero_h1_line2: "when we succeed.",
-        hero_desc: "Cégdoktor provides grant writing, project management, and business advisory, alongside public procurement and financing support. Our mission is to liberate you to focus on your core craft: we manage administration, software task tracking, and regulatory deadlines. Grants and financing services are delivered on a success-fee model — no upfront fees required.",
+        hero_desc: "Cégdoktor provides grant writing, project management, and business advisory, alongside public procurement and financing support. Our mission is to liberate you to focus on your core craft: we manage administration, software task tracking, and regulatory deadlines. All grant application procedures are handled on a success-fee model.",
         btn_hero_contact: "Get in Touch",
         btn_hero_services: "Our Services",
         hero_trust_1: "No upfront fees required",
