@@ -1851,7 +1851,8 @@
     animation: fadeIn 0.4s var(--ease-spring) forwards;
   }
 
-  .form-feedback.success {
+  .form-feedback.success,
+  .form-feedback.is-error {
     display: block;
   }
 
@@ -3185,6 +3186,7 @@
       <!-- Interactive Contact Form Card -->
       <div class="contact-form-card">
         <form id="contactForm" novalidate>
+          <input type="text" name="_honey" id="contactHoney" style="display:none;" tabindex="-1" autocomplete="off">
           <div class="form-grid-inner">
             <div class="form-group">
               <label for="contactName" class="form-label"><span data-i18n="form_name_label">Teljes név</span> <span class="req">*</span></label>
@@ -3249,6 +3251,18 @@
           </p>
           <button type="button" id="resetFormBtn" class="btn btn-secondary" data-i18n="feedback_reset_btn">
             Új üzenet küldése
+          </button>
+        </div>
+
+        <!-- Hiba visszajelzés (Error state) -->
+        <div id="formError" class="form-feedback error-feedback" style="display:none;">
+          <div class="feedback-icon" style="background:rgba(220,38,38,0.12); color:#dc2626;">!</div>
+          <h3 class="feedback-title" data-i18n="feedback_error_title">Hiba történt a küldés során</h3>
+          <p class="feedback-text" data-i18n="feedback_error_text">
+            Kérjük próbálja újra, vagy írjon nekünk közvetlenül az <a href="mailto:info@cegdoktor.hu" style="color:var(--accent-gold); text-decoration:underline;">info@cegdoktor.hu</a> címre.
+          </p>
+          <button type="button" id="retryFormBtn" class="btn btn-secondary" data-i18n="feedback_retry_btn">
+            Újrapróbálás
           </button>
         </div>
       </div>
@@ -3477,6 +3491,9 @@ nav_intro: "Bemutatkozás",
         feedback_title: "Köszönjük megkeresését!",
         feedback_text: "Üzenetét sikeresen rögzítettük. Munkatársunk áttekinti a részleteket, és legkésőbb 1 munkanapon belül felveszi Önnel a kapcsolatot.",
         feedback_reset_btn: "Új üzenet küldése",
+        feedback_error_title: "Hiba történt a küldés során",
+        feedback_error_text: "Kérjük próbálja újra, vagy írjon nekünk közvetlenül az info@cegdoktor.hu címre.",
+        feedback_retry_btn: "Újrapróbálás",
         footer_legal: "© 2026 Cégdoktor. Minden jog fenntartva. A weboldal tartalma szerzői jogi védelem alatt áll (1999. évi LXXVI. törvény), és a Cégdoktor kizárólagos tulajdonát képezi; kereskedelmi vagy üzleti célú felhasználása kizárólag előzetes írásbeli engedéllyel lehetséges."
       },
       en: {
@@ -3656,6 +3673,9 @@ nav_intro: "About Us",
         feedback_title: "Thank you for reaching out!",
         feedback_text: "Your message has been received. Our team will review the details and respond within 1 business day.",
         feedback_reset_btn: "Send another message",
+        feedback_error_title: "Error sending message",
+        feedback_error_text: "Please try again or email us directly at info@cegdoktor.hu.",
+        feedback_retry_btn: "Try again",
         footer_legal: "© 2026 Cégdoktor. All rights reserved. The content of this website is protected by copyright law and constitutes the exclusive property of Cégdoktor."
       }
     };
@@ -3831,7 +3851,9 @@ nav_intro: "About Us",
     // ── Interactive Contact Form Engine ──
     const contactForm = document.getElementById('contactForm');
     const formSuccess = document.getElementById('formSuccess');
+    const formError = document.getElementById('formError');
     const resetBtn = document.getElementById('resetFormBtn');
+    const retryBtn = document.getElementById('retryFormBtn');
     const submitBtn = document.getElementById('submitBtn');
 
     // Smooth scroll and auto-focus from any CTA anchor
@@ -3848,19 +3870,23 @@ nav_intro: "About Us",
     });
 
     if (contactForm) {
-      contactForm.addEventListener('submit', (e) => {
+      contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const name = document.getElementById('contactName');
         const email = document.getElementById('contactEmail');
+        const phone = document.getElementById('contactPhone');
+        const company = document.getElementById('contactCompany');
+        const service = document.getElementById('contactService');
         const message = document.getElementById('contactMessage');
         const privacy = document.getElementById('contactPrivacy');
+        const honey = document.getElementById('contactHoney');
 
         let isValid = true;
         let firstInvalid = null;
 
         [name, email, message].forEach(el => {
-          const val = el.value.trim();
+          const val = el ? el.value.trim() : '';
           const isEmailValid = el !== email || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
           if (!val || !isEmailValid) {
             el.classList.add('invalid');
@@ -3871,11 +3897,11 @@ nav_intro: "About Us",
           }
         });
 
-        if (!privacy.checked) {
+        if (privacy && !privacy.checked) {
           privacy.classList.add('invalid');
           if (!firstInvalid) firstInvalid = privacy;
           isValid = false;
-        } else {
+        } else if (privacy) {
           privacy.classList.remove('invalid');
         }
 
@@ -3892,13 +3918,106 @@ nav_intro: "About Us",
         const originalText = submitSpan ? submitSpan.textContent : 'Üzenet elküldése';
         if (submitSpan) submitSpan.textContent = t.form_submitting || 'Küldés folyamatban...';
 
-        setTimeout(() => {
+        const nameVal = name.value.trim();
+        const emailVal = email.value.trim();
+        const phoneVal = phone ? phone.value.trim() : '';
+        const companyVal = company ? company.value.trim() : '';
+        const serviceVal = service && service.selectedIndex >= 0 ? service.options[service.selectedIndex].text : '';
+        const messageVal = message.value.trim();
+        const honeyVal = honey ? honey.value.trim() : '';
+
+        const payload = {
+          name: nameVal,
+          email: emailVal,
+          phone: phoneVal,
+          company: companyVal,
+          service: serviceVal,
+          message: messageVal,
+          _honey: honeyVal
+        };
+
+        try {
+          // 1. Try local serverless endpoint /api/contact
+          let res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(payload)
+          }).catch(() => null);
+
+          let isSuccess = false;
+          if (res && res.ok) {
+            const data = await res.json().catch(() => ({}));
+            if (data.success === 'true' || data.success === true || data.status === 'success') {
+              isSuccess = true;
+            }
+          }
+
+          // 2. Fallback directly to FormSubmit from browser if needed
+          if (!isSuccess) {
+            const fallbackPayload = {
+              "Név / Full Name": nameVal,
+              "E-mail": emailVal,
+              "Telefonszám / Phone": phoneVal || 'Nem adott meg',
+              "Cégnév / Company": companyVal || 'Nem adott meg',
+              "Érdeklődési terület / Area": serviceVal || 'Egyéb',
+              "Üzenet / Message": messageVal,
+              "_subject": `Új Cégdoktor megkeresés: ${nameVal} (${companyVal || 'Magánszemély'})`,
+              "_replyto": emailVal,
+              "_template": "table",
+              "_captcha": "false"
+            };
+            if (honeyVal) fallbackPayload._honey = honeyVal;
+
+            const fallbackRes = await fetch('https://formsubmit.co/ajax/info@cegdoktor.hu', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify(fallbackPayload)
+            });
+
+            if (fallbackRes.ok) {
+              const fbData = await fallbackRes.json().catch(() => ({}));
+              if (fbData.success === 'true' || fbData.success === true) {
+                isSuccess = true;
+              }
+            }
+          }
+
+          if (isSuccess) {
+            contactForm.style.display = 'none';
+            if (formError) {
+              formError.classList.remove('is-error');
+              formError.style.display = 'none';
+            }
+            if (formSuccess) {
+              formSuccess.classList.add('success');
+              formSuccess.style.display = 'block';
+              formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          } else {
+            throw new Error('Form submission failed');
+          }
+        } catch (err) {
+          console.error('Contact form submission error:', err);
           contactForm.style.display = 'none';
-          formSuccess.classList.add('success');
-          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          if (formSuccess) {
+            formSuccess.classList.remove('success');
+            formSuccess.style.display = 'none';
+          }
+          if (formError) {
+            formError.classList.add('is-error');
+            formError.style.display = 'block';
+            formError.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        } finally {
           submitBtn.disabled = false;
           if (submitSpan) submitSpan.textContent = originalText;
-        }, 450);
+        }
       });
 
       contactForm.querySelectorAll('.form-input, .form-textarea, .form-checkbox').forEach(input => {
@@ -3910,10 +4029,27 @@ nav_intro: "About Us",
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
         contactForm.reset();
-        formSuccess.classList.remove('success');
+        if (formSuccess) {
+          formSuccess.classList.remove('success');
+          formSuccess.style.display = 'none';
+        }
+        if (formError) {
+          formError.classList.remove('is-error');
+          formError.style.display = 'none';
+        }
         contactForm.style.display = 'block';
         const firstInput = document.getElementById('contactName');
         if (firstInput) firstInput.focus();
+      });
+    }
+
+    if (retryBtn) {
+      retryBtn.addEventListener('click', () => {
+        if (formError) {
+          formError.classList.remove('is-error');
+          formError.style.display = 'none';
+        }
+        contactForm.style.display = 'block';
       });
     }
   })();
