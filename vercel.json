@@ -4,7 +4,10 @@
   "trailingSlash": false,
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
-    { "source": "/cegdoktor", "destination": "/index.html" }
+    { "source": "/cegdoktor", "destination": "/index.html" },
+    { "source": "/adatkezeles", "destination": "/adatkezeles.html" },
+    { "source": "/adatvedelem", "destination": "/adatkezeles.html" },
+    { "source": "/privacy", "destination": "/adatkezeles.html" }
   ],
   "headers": [
     {

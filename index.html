@@ -2496,7 +2496,258 @@
       text-align: center;
       padding: 24px 20px;
     }
-    .showcase-banner .btn {
+  }
+
+  /* ── Privacy Policy Overlay Modal ── */
+  body.privacy-open {
+    overflow: hidden !important;
+  }
+
+  .privacy-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 27, 30, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  .privacy-backdrop.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .privacy-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: 820px;
+    background: #0E2226;
+    color: #FAF6EE;
+    border-left: 1px solid rgba(245, 240, 230, 0.16);
+    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.65);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .privacy-overlay.is-active {
+    transform: translateX(0);
+  }
+
+  .privacy-overlay-noselect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .privacy-overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    background: rgba(14, 34, 38, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(245, 240, 230, 0.12);
+    flex-shrink: 0;
+  }
+
+  .privacy-header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .privacy-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-gold);
+  }
+
+  .privacy-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #FAF6EE;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .privacy-close-icon-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(245, 240, 230, 0.08);
+    border: 1px solid rgba(245, 240, 230, 0.18);
+    color: #FAF6EE;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+  }
+  .privacy-close-icon-btn:hover {
+    background: rgba(245, 240, 230, 0.18);
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    transform: rotate(90deg);
+  }
+
+  .privacy-overlay-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 28px 32px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: rgba(245, 240, 230, 0.85);
+    overscroll-behavior: contain;
+  }
+  .privacy-overlay-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  .privacy-overlay-body::-webkit-scrollbar-track {
+    background: rgba(14, 34, 38, 0.5);
+  }
+  .privacy-overlay-body::-webkit-scrollbar-thumb {
+    background: rgba(217, 164, 65, 0.35);
+    border-radius: 4px;
+  }
+  .privacy-overlay-body::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
+  }
+
+  .privacy-section-block {
+    padding-top: 22px;
+    margin-top: 22px;
+    border-top: 1px solid rgba(245, 240, 230, 0.1);
+  }
+  .privacy-section-block:first-of-type {
+    padding-top: 0;
+    margin-top: 0;
+    border-top: none;
+  }
+
+  .privacy-sec-heading {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .privacy-sub-heading {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #FAF6EE;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  .privacy-overlay-body p {
+    margin-bottom: 12px;
+  }
+
+  .privacy-overlay-body ul {
+    margin-bottom: 14px;
+    padding-left: 20px;
+  }
+
+  .privacy-overlay-body li {
+    margin-bottom: 6px;
+  }
+
+  .privacy-company-card {
+    background: rgba(245, 240, 230, 0.04);
+    border: 1px solid rgba(217, 164, 65, 0.3);
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 16px 0;
+  }
+
+  .privacy-company-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px 20px;
+    font-size: 0.88rem;
+  }
+
+  .privacy-company-item strong {
+    display: block;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(245, 240, 230, 0.65);
+    margin-bottom: 2px;
+  }
+
+  .privacy-overlay-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 28px;
+    background: rgba(14, 34, 38, 0.98);
+    border-top: 1px solid rgba(245, 240, 230, 0.12);
+    flex-shrink: 0;
+  }
+
+  .privacy-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .privacy-trigger {
+    color: var(--accent-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+    transition: color 0.2s ease, opacity 0.2s ease;
+  }
+  .privacy-trigger:hover {
+    color: #f0bd5a;
+    opacity: 0.9;
+  }
+
+  @media (max-width: 640px) {
+    .privacy-overlay {
+      max-width: 100%;
+    }
+    .privacy-overlay-header {
+      padding: 16px 20px;
+    }
+    .privacy-overlay-body {
+      padding: 20px;
+      font-size: 0.88rem;
+    }
+    .privacy-overlay-footer {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 16px 20px;
+      gap: 12px;
+    }
+    .privacy-footer-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .privacy-footer-actions .btn {
       width: 100%;
       justify-content: center;
     }
@@ -3357,7 +3608,7 @@
             <div class="form-group full-width">
               <label class="form-checkbox-label">
                 <input type="checkbox" id="contactPrivacy" name="privacy" class="form-checkbox" required>
-                <span data-i18n="form_privacy_text">Elfogadom az adatkezelési tájékoztatót, és hozzájárulok, hogy a Cégdoktor munkatársa felvegye velem a kapcsolatot.</span>
+                <span data-i18n="form_privacy_text">Elfogadom az <a href="/adatkezeles.html" class="privacy-trigger">adatkezelési tájékoztatót</a>, és hozzájárulok, hogy a Cégdoktor munkatársa felvegye velem a kapcsolatot.</span>
               </label>
             </div>
           </div>
@@ -3420,16 +3671,17 @@
         <a href="#csapat" data-i18n="nav_team">Csapat</a>
         <a href="#partnereink" data-i18n="nav_partners">Partnereink</a>
         <a href="#dijazas" data-i18n="nav_pricing">Díjazás</a>
+        <a href="/adatkezeles.html" class="privacy-trigger" data-i18n="nav_privacy">Adatkezelés</a>
         <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a>
       </div>
     </div>
 
     <div class="footer-bottom">
       <p data-i18n="footer_legal">
-        &copy; 2026 Cégdoktor. Minden jog fenntartva. A weboldal tartalma szerzői jogi védelem alatt áll (1999. évi LXXVI. törvény), és a Cégdoktor kizárólagos tulajdonát képezi; kereskedelmi vagy üzleti célú felhasználása kizárólag előzetes írásbeli engedéllyel lehetséges.
+        &copy; 2026 Cégdoktor · ATVA-Consulting Kft. Minden jog fenntartva. A weboldal tartalma szerzői jogi védelem alatt áll (1999. évi LXXVI. törvény), és a Cégdoktor kizárólagos tulajdonát képezi; kereskedelmi vagy üzleti célú felhasználása kizárólag előzetes írásbeli engedéllyel lehetséges.
       </p>
-      <p style="color:rgba(245,240,230,0.45);">
-        E-mail: <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a>
+      <p style="color:rgba(245,240,230,0.55); font-size:0.85rem; margin-top:6px;">
+        Adatkezelő: ATVA-Consulting Kft. (Cg.: 01-09-274818, Adószám: 13625108-2-41) · <a href="/adatkezeles.html" class="privacy-trigger" style="color:var(--accent-gold); text-decoration:underline;" data-i18n="footer_privacy_link">Adatkezelési tájékoztató megnyitása</a> · E-mail: <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a>
       </p>
     </div>
   </div>
@@ -3625,7 +3877,7 @@ nav_intro: "Bemutatkozás",
         form_opt_other: "Egyéb megkeresés",
         form_message_label: "Üzenet leírása",
         form_message_ph: "Röviden írja le céljait, projektjét vagy kérdését...",
-        form_privacy_text: "Elfogadom az adatkezelési tájékoztatót, és hozzájárulok, hogy a Cégdoktor munkatársa felvegye velem a kapcsolatot.",
+        form_privacy_text: "Elfogadom az <a href=\"/adatkezeles.html\" class=\"privacy-trigger\">adatkezelési tájékoztatót</a>, és hozzájárulok, hogy a Cégdoktor munkatársa felvegye velem a kapcsolatot.",
         form_submit_btn: "Üzenet elküldése",
         form_submitting: "Küldés folyamatban...",
         
@@ -3635,7 +3887,9 @@ nav_intro: "Bemutatkozás",
         feedback_error_title: "Hiba történt a küldés során",
         feedback_error_text: "Kérjük próbálja újra, vagy írjon nekünk közvetlenül az info@cegdoktor.hu címre.",
         feedback_retry_btn: "Újrapróbálás",
-        footer_legal: "© 2026 Cégdoktor. Minden jog fenntartva. A weboldal tartalma szerzői jogi védelem alatt áll (1999. évi LXXVI. törvény), és a Cégdoktor kizárólagos tulajdonát képezi; kereskedelmi vagy üzleti célú felhasználása kizárólag előzetes írásbeli engedéllyel lehetséges."
+        nav_privacy: "Adatkezelés",
+        footer_privacy_link: "Adatkezelési tájékoztató megnyitása",
+        footer_legal: "© 2026 Cégdoktor · ATVA-Consulting Kft. Minden jog fenntartva. A weboldal tartalma szerzői jogi védelem alatt áll (1999. évi LXXVI. törvény), és a Cégdoktor kizárólagos tulajdonát képezi; kereskedelmi vagy üzleti célú felhasználása kizárólag előzetes írásbeli engedéllyel lehetséges."
       },
       en: {
         page_title: "Cégdoktor — Grant Writing · Business Advisory · Project Management",
@@ -3822,7 +4076,7 @@ nav_intro: "About Us",
         form_opt_other: "Other Inquiries",
         form_message_label: "Message Description",
         form_message_ph: "Briefly describe your objectives, project, or inquiry...",
-        form_privacy_text: "I agree to the privacy policy and consent to being contacted by Cégdoktor representatives.",
+        form_privacy_text: "I agree to the <a href=\"/adatkezeles.html\" class=\"privacy-trigger\">privacy policy</a> and consent to being contacted by Cégdoktor representatives.",
         form_submit_btn: "Send Message",
         form_submitting: "Sending message...",
         
@@ -3832,7 +4086,9 @@ nav_intro: "About Us",
         feedback_error_title: "Error sending message",
         feedback_error_text: "Please try again or email us directly at info@cegdoktor.hu.",
         feedback_retry_btn: "Try again",
-        footer_legal: "© 2026 Cégdoktor. All rights reserved. The content of this website is protected by copyright law and constitutes the exclusive property of Cégdoktor."
+        nav_privacy: "Privacy Policy",
+        footer_privacy_link: "Open Privacy Policy",
+        footer_legal: "© 2026 Cégdoktor · ATVA-Consulting Kft. All rights reserved. The content of this website is protected by copyright law and constitutes the exclusive property of Cégdoktor."
       }
     };
 
@@ -4200,17 +4456,274 @@ nav_intro: "About Us",
       });
     }
 
-    if (retryBtn) {
-      retryBtn.addEventListener('click', () => {
-        if (formError) {
-          formError.classList.remove('is-error');
-          formError.style.display = 'none';
-        }
-        contactForm.style.display = 'block';
-      });
+    // ── Privacy Policy Overlay Modal Controller ──
+    function openPrivacyOverlay() {
+      const overlay = document.getElementById('overlay-privacy');
+      const backdrop = document.getElementById('privacyBackdrop');
+      if (!overlay || !backdrop) return;
+      backdrop.classList.add('is-active');
+      overlay.classList.add('is-active');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('privacy-open');
     }
+
+    function closePrivacyOverlay() {
+      const overlay = document.getElementById('overlay-privacy');
+      const backdrop = document.getElementById('privacyBackdrop');
+      if (!overlay || !backdrop) return;
+      backdrop.classList.remove('is-active');
+      overlay.classList.remove('is-active');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('privacy-open');
+    }
+
+    // Event delegation on document for all privacy modal interactions
+    document.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.privacy-trigger');
+      if (trigger) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.which === 2) return;
+        e.preventDefault();
+        openPrivacyOverlay();
+        return;
+      }
+
+      if (e.target.closest('.privacy-close-btn') || e.target.id === 'privacyBackdrop') {
+        e.preventDefault();
+        closePrivacyOverlay();
+        return;
+      }
+
+      if (e.target.closest('#privacyModalAcceptBtn')) {
+        e.preventDefault();
+        const checkbox = document.getElementById('contactPrivacy');
+        if (checkbox) {
+          checkbox.checked = true;
+          checkbox.classList.remove('invalid');
+        }
+        closePrivacyOverlay();
+        return;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const overlay = document.getElementById('overlay-privacy');
+        if (overlay && overlay.classList.contains('is-active')) {
+          closePrivacyOverlay();
+        }
+      }
+    });
   })();
 </script>
+
+<!-- ── PRIVACY POLICY OVERLAY MODAL ── -->
+<div id="privacyBackdrop" class="privacy-backdrop" aria-hidden="true"></div>
+<aside id="overlay-privacy" class="privacy-overlay" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle" aria-hidden="true">
+  <div class="privacy-overlay-header">
+    <div class="privacy-header-titles">
+      <span class="privacy-header-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        GDPR &amp; Adatvédelem
+      </span>
+      <h2 id="privacyModalTitle" class="privacy-modal-title">Adatkezelési Tájékoztató</h2>
+    </div>
+    <button type="button" class="privacy-close-icon-btn privacy-close-btn" aria-label="Bezárás">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+
+  <div class="privacy-overlay-body privacy-overlay-noselect" oncopy="return false" oncut="return false" onpaste="return false" onselectstart="return false" ondragstart="return false" oncontextmenu="return false">
+    <p style="font-size:1.02rem; color:#FAF6EE; margin-bottom:16px;">
+      Az <strong>ATVA-Consulting Kft.</strong> (Cégdoktor) általános adatvédelmi tájékoztatója az érintetti jogok érvényesülése és az átlátható tájékoztatás biztosítása érdekében.
+    </p>
+
+    <!-- Company highlight card -->
+    <div class="privacy-company-card">
+      <div class="privacy-company-grid">
+        <div class="privacy-company-item">
+          <strong>Adatkezelő cégnév:</strong>
+          ATVA-Consulting Kft.
+        </div>
+        <div class="privacy-company-item">
+          <strong>Székhely:</strong>
+          1054 Budapest, Akadémia utca 14.
+        </div>
+        <div class="privacy-company-item">
+          <strong>Cégjegyzékszám:</strong>
+          01-09-274818
+        </div>
+        <div class="privacy-company-item">
+          <strong>Adószám:</strong>
+          13625108-2-41
+        </div>
+        <div class="privacy-company-item">
+          <strong>Adatkezelési kapcsolattartó:</strong>
+          Piskóti Gergő
+        </div>
+        <div class="privacy-company-item">
+          <strong>E-mail &amp; Kapcsolat:</strong>
+          <a href="mailto:info@cegdoktor.hu" style="color:var(--accent-gold); text-decoration:underline;">info@cegdoktor.hu</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section I -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">I. Bevezetés és az adatkezelés alapjául szolgáló jogszabályok</h3>
+      <p>Jelen Adatvédelmi Tájékoztató kialakításakor az ATVA-Consulting Korlátolt Felelősségű Társaság figyelembe vette elsősorban a természetes személyeknek a személyes adatok kezelése tekintetében történő védelméről és az ilyen adatok szabad áramlásáról, valamint a 95/46/EK rendelet hatályon kívül helyezéséről szóló 2016/679/EU rendelet (általános adatvédelmi rendelet – GDPR), az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) rendelkezéseit. A tájékoztató a jogszabályokban foglalt tájékoztatási kötelezettség teljesítését szolgálja.</p>
+    </div>
+
+    <!-- Section II -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">II. Az adatkezelő adatai</h3>
+      <ul>
+        <li><strong>Adatkezelő:</strong> ATVA-Consulting Korlátolt Felelősségű Társaság (a továbbiakban: Társaság vagy Adatkezelő)</li>
+        <li><strong>Székhely:</strong> 1054 Budapest, Akadémia utca 14.</li>
+        <li><strong>Cégjegyzékszám (Cg.):</strong> 01-09-274818 (Fővárosi Törvényszék Cégbírósága)</li>
+        <li><strong>Az adatkezelő adószáma:</strong> 13625108-2-41</li>
+        <li><strong>E-mail:</strong> <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a></li>
+        <li><strong>Weboldal:</strong> <a href="https://cegdoktor.hu" target="_blank" rel="noopener">https://cegdoktor.hu</a></li>
+      </ul>
+      <ul>
+        <li><strong>Adatkezelési kapcsolattartó / Adatügyi felelős személy:</strong> Piskóti Gergő</li>
+        <li><strong>Postai levélcím:</strong> 1054 Budapest, Akadémia utca 14.</li>
+        <li><strong>Elektronikus levélcím:</strong> <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a></li>
+        <li>Adatvédelmi tisztviselő kijelölése a Társaság részéről nem kötelező (a GDPR 37. cikke alapján).</li>
+      </ul>
+    </div>
+
+    <!-- Section III -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">III. Adatkezelés jogalapja</h3>
+      <p>A Társaság minden adatkezelése során a jogszabályokban és belső szabályzatában foglalt jogalapok valamelyikének megjelölésével végez tevékenységet. Így a Társaság az alábbi jogalapok valamelyike alapján kezelhet személyes adatot:</p>
+      <ul>
+        <li>a szerződés megkötéséhez vagy teljesítéséhez szükséges,</li>
+        <li>jogi kötelezettség teljesítéséhez szükséges,</li>
+        <li>az adatkezelő vagy egy harmadik fél jogos érdekeinek érvényesítéséhez szükséges,</li>
+        <li>az érintett hozzájárulása alapján,</li>
+        <li>az érintett vagy egy másik természetes személy létfontosságú érdekeinek védelme miatt szükséges.</li>
+      </ul>
+      <p>Az egyes adatkezelésekről történő egyedi tájékoztatásaiban (átlátható tájékoztatás kötelezettségének teljesítése érdekében) konkrétan megjelöli az adatkezelés jogalapját.</p>
+    </div>
+
+    <!-- Section IV -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">IV. Adatkezelés célja</h3>
+      <p>A Társaság minden adatkezelése során a jogszabályokban és belső szabályzatában foglaltak alapján a személyes adatok gyűjtése kizárólag jogszerű és egyértelműen azonosítható célból történik. Az egyes adatkezelésekről történő egyedi tájékoztatásaiban (átlátható tájékoztatás kötelezettségének teljesítése érdekében) konkrétan megjelöli az adatkezelés célját.</p>
+    </div>
+
+    <!-- Section V -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">V. Személyes adatok kategóriái</h3>
+      <p>A Társaság minden adatkezelése során a jogszabályokban és belső szabályzatában foglaltak alapján a személyes adatok gyűjtése kapcsán különbséget tesz annak forrása alapján, így érintettől származó személyes adatok és nem az érintettől származó személyes adatok. Az egyes adatkezelésekről történő egyedi tájékoztatásaiban (átlátható tájékoztatás kötelezettségének teljesítése érdekében) konkrétan megjelöli a személyes adatok forrását és kategóriáit. A Társaság e körben tájékoztatást ad arra vonatkozóan is, hogy a személyes adatok kapcsán automatizált döntéshozatal történik-e.</p>
+    </div>
+
+    <!-- Section VI -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">VI. Személyes adatok kezelésének tervezett időtartama</h3>
+      <p>A Társaság minden adatkezelése során a jogszabályokban és belső szabályzatában foglaltak alapján a személyes adatok gyűjtése kapcsán a jogszabályok által előírt időtartamban kezeli azokat. Az egyes adatkezelésekről történő egyedi tájékoztatásaiban (átlátható tájékoztatás kötelezettségének teljesítése érdekében) konkrétan megjelöli a személyes adatok kezelésének időtartamát.</p>
+    </div>
+
+    <!-- Section VII -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">VII. Személyes adatok címzettjei adattovábbítás esetén</h3>
+      <p>A Társaság minden adatkezelése során a jogszabályokban és belső szabályzatában foglaltak alapján továbbíthatja az általa kezelt személyes adatokat. Az egyes adatkezelésekről történő egyedi tájékoztatásaiban (átlátható tájékoztatás kötelezettségének teljesítése érdekében) konkrétan megjelöli az adattovábbítás tényét, illetve a címzettek kategóriáit. Harmadik országba történő adattovábbítást kifejezetten megjelöli a Társaság a címzett megjelölésével, illetve, hogy milyen módon biztosítottak a jogszabályokban rögzített garanciális feltételek.</p>
+      
+      <p style="font-weight:600; color:#FAF6EE; margin-bottom:8px;">Igénybe vett adatfeldolgozók:</p>
+      <ul>
+        <li><strong>Vercel Inc.</strong> (Weboldal tárhely-szolgáltatás és felhő infrastruktúra)<br>
+          Adatvédelmi dokumentáció elérhetősége: <a href="https://vercel.com/docs/security/compliance#gdpr" target="_blank" rel="noopener">https://vercel.com/docs/security/compliance#gdpr</a>
+        </li>
+        <li><strong>Cloudflare, Inc.</strong> (DNS szolgáltatás, SSL titkosítás, DDoS védelem és e-mail továbbítási routing)<br>
+          Adatvédelmi dokumentáció elérhetősége: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">https://www.cloudflare.com/privacypolicy/</a>
+        </li>
+        <li><strong>GitHub (Microsoft Inc.)</strong> (Kódtár- és verziókezelési infrastruktúra)<br>
+          Adatvédelmi dokumentáció elérhetősége: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement</a>
+        </li>
+        <li><strong>FormSubmit API</strong> (Titkosított űrlap-továbbítási végpont az érdeklődések eljuttatásához az info@cegdoktor.hu címre)<br>
+          Adatvédelmi irányelvek: <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">https://formsubmit.co/privacy.pdf</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Section VIII -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">VIII. Érintetti jogok</h3>
+      <h4 class="privacy-sub-heading">Átlátható tájékoztatás joga</h4>
+      <p>Az átlátható tájékoztatás joga három tájékoztatási kötelezettség esetkört foglal magába:</p>
+      <ul>
+        <li>Az érintettől származó személyes adatokra vonatkozó tájékoztatás,</li>
+        <li>Nem az érintettől származó személyes adatokra vonatkozó tájékoztatás,</li>
+        <li>Érintetti jogok gyakorlására irányuló kérelemhez kapcsolódó tájékoztatás.</li>
+      </ul>
+      <p>Az érintettet az alábbi információkról kötelező tájékoztatni (érintettől és nem érintettől származó adatok esetén):</p>
+      <ul>
+        <li>az adatkezelő és képviselőjének kiléte és elérhetősége(i),</li>
+        <li>— ha van ilyen — az adatvédelmi tisztviselő elérhetősége(i),</li>
+        <li>a személyes adatok tervezett kezelésének célja,</li>
+        <li>az adatkezelés jogalapja (az adatkezelő vagy harmadik fél jogos érdekeinek érvényesítéséhez szükségesség jogalap esetén az adatkezelő vagy harmadik fél jogos érdekének megnevezése),</li>
+        <li>adott esetben a személyes adatok címzettjei (ideértve azok kategóriáit is – ha van ilyen),</li>
+        <li>— ha van ilyen — azon tényt, hogy az adatkezelő harmadik országba vagy nemzetközi szervezet részére továbbítja a személyes adatokat (ideértve a Bizottság megfelelőségi határozata meglétének tényét vagy annak hiányát vagy a megfelelő és alkalmas garanciák meglétének megjelölését).</li>
+      </ul>
+      <p>Korábbitól eltérő célú adatkezelés esetén a további adatkezelést megelőzően a Társaság az eltérő célról és minden releváns kiegészítő információról köteles tájékoztatni az érintettet.</p>
+      <p>Érintetti jogok gyakorlására irányuló kérelem esetén az érintetti jogok gyakorlására irányuló kérelem nyomán hozott intézkedésekről és az egyes érintetti jogok esetén előírt információkról köteles a Társaság az érintett részére tájékoztatást adni.</p>
+      <p>A Társaság köteles minden tájékoztatást tömör, átlátható, érthető és könnyen hozzáférhető formában, világosan és közérthető módon, díjmentesen megadni. A tájékoztatást írásban vagy más módon – ide értve az elektronikus utat is – kell megadni. A Társaság az érintett kérésére szóbeli tájékoztatást adhat a kérelmező személy azonosságának kétséget kizáró ellenőrzését követően. Amennyiben az érintett kérelmét elektronikus úton nyújtotta be, úgy a tájékoztatást – lehetőség szerint – elektronikus úton kell teljesíteni, kivéve, ha azt az érintett másként kéri.</p>
+      <p>Amennyiben az érintetti jogok gyakorlására irányuló kérelem esetén az érintett kérelme egyértelműen megalapozatlan vagy – figyelembe véve annak ismétlődő jellegét – túlzó, úgy Társaság jogosult ésszerű összegű díjat felszámítani vagy a tájékoztatást megtagadni. Díj felszámítása esetén a Társaság az tájékoztatás adásával vagy a szükséges intézkedés meghozatalával járó adminisztratív költségeit veheti alapul. Az érintetti jogok gyakorlására irányuló kérelem esetén az érintett kérelmének elutasítása esetén Társaság köteles bizonyítani a kérelem egyértelmű megalapozatlanságát, illetve a túlzó jellegét.</p>
+      <p>Az érintetti jogok gyakorlására irányuló kérelem esetén, amennyiben Társaság nem tudja kétséget kizáróan azonosítani (megalapozott kétségei vannak) a kérelem benyújtójának jogosságát (személyazonosságát), úgy jogosult további, megerősítéshez szükséges információkat bekérni az érintettől.</p>
+
+      <h4 class="privacy-sub-heading">Hozzáférés joga</h4>
+      <p>A hozzáférés joga alapján az érintett jogosult arra, hogy arra vonatkozóan információt kapjon, hogy adatkezelőnél folyamatban van-e személyes adatainak kezelése, és ha igen, úgy azokra vonatkozóan információkhoz hozzáférhessen.</p>
+      <p>A Társaság köteles díjmentesen a kezelt személyes adatokról az érintett rendelkezésére bocsátani azok másolatát. Amennyiben az érintett további másolatot kér, úgy Társaság jogosult ésszerű összegű, adminisztratív díjat felszámítani. A másolat igénylésére vonatkozó jog teljesítésére során Társaság köteles minden esetben figyelembe venni mások jogait és szabadságait.</p>
+
+      <h4 class="privacy-sub-heading">Helyesbítéshez való jog</h4>
+      <p>A helyesbítéshez való jog kettős jogosultságot foglal magába, amelyeket érintett erre irányuló kérelem útján gyakorolhat: pontatlan személyes adatok pontosítása iránti kérelem (Javító helyesbítés) és hiányos személyes adatok kiegészítése iránti kérelem (Kiegészítő helyesbítés).</p>
+
+      <h4 class="privacy-sub-heading">Törléshez való jog (Az elfeledtetéshez való jog)</h4>
+      <p>A törléshez való jog alapján az érintett jogosult arra, hogy erre irányuló kérelme alapján a Társaság törölje az érintettre vonatkozó adatokat. A Társaság a törlésre irányuló kérelem beérkezését követően megvizsgálja a kérelmező személyazonosságát (jogosulti státuszát). Jogosulatlan személytől érkező kérelem teljesítését Társaság köteles megtagadni a jogosulatlanságra történő hivatkozással.</p>
+
+      <h4 class="privacy-sub-heading">Az adatkezelés korlátozásához való jog</h4>
+      <p>Az adatkezelés korlátozásához való jog alapján az érintett jogosult arra, hogy erre irányuló kérelme alapján a Társaság korlátozza az érintettre vonatkozó személyes adatok kezelését.</p>
+
+      <h4 class="privacy-sub-heading">Adathordozhatósághoz való jog</h4>
+      <p>Az adathordozhatósághoz való jog alapján az érintett kérheti a rendelkezésére bocsátott személyes adatok tagolt, széles körben használt, géppel olvasható formátumban történő átadását vagy más adatkezelő részére történő közvetlen továbbítását.</p>
+
+      <h4 class="privacy-sub-heading">Tiltakozáshoz való jog</h4>
+      <p>A tiltakozáshoz való jog alapján az érintett jogosult arra, hogy erre irányuló kérelme alapján a saját helyzetével kapcsolatos okokból bármikor tiltakozzon személyes adatainak kezelése ellen, amennyiben az jogos érdeken alapul.</p>
+    </div>
+
+    <!-- Section IX -->
+    <div class="privacy-section-block">
+      <h3 class="privacy-sec-heading">IX. Jogorvoslati lehetőségek</h3>
+      <h4 class="privacy-sub-heading">Panasz a Társaság felé</h4>
+      <p>Az érintett a GDPR és a vonatkozó jogszabályok alapján panasszal élhet Társaságunk felé az <a href="mailto:info@cegdoktor.hu">info@cegdoktor.hu</a> címen vagy postai úton (1054 Budapest, Akadémia utca 14.).</p>
+
+      <h4 class="privacy-sub-heading">Panasz a felügyeleti hatóságnál (NAIH)</h4>
+      <p>
+        <strong>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</strong><br>
+        1055 Budapest, Falk Miksa utca 9-11.<br>
+        Postacím: 1363 Budapest, Pf.: 9.<br>
+        Telefon: +36 (1) 391-1400 · Fax: +36 (1) 391-1410<br>
+        E-mail: ugyfelszolgalat@naih.hu · Honlap: <a href="https://naih.hu" target="_blank" rel="noopener">https://naih.hu</a>
+      </p>
+
+      <h4 class="privacy-sub-heading">Bírósági eljárás kezdeményezése</h4>
+      <p>Az érintett bírósági jogorvoslattal is élhet az adatkezelő székhelye vagy a saját lakóhelye / tartózkodási helye szerinti illetékes Törvényszék előtt (<a href="https://birosag.hu/ugyfelkapcsolati-portal/illetekessegkereso" target="_blank" rel="noopener">https://birosag.hu/ugyfelkapcsolati-portal/illetekessegkereso</a>).</p>
+
+      <p style="margin-top:20px; font-style:italic;">Kérdéseivel, illetve észrevételeivel keresse bizalommal munkatársainkat az info@cegdoktor.hu címen!</p>
+    </div>
+  </div>
+
+  <div class="privacy-overlay-footer">
+    <a href="/adatkezeles.html" target="_blank" class="btn btn-secondary btn-sm" style="display:inline-flex; align-items:center; gap:6px;">
+      <span>Külön lapon megnyitás</span>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+    <div class="privacy-footer-actions">
+      <button type="button" class="btn btn-secondary btn-sm privacy-close-btn">Bezárás</button>
+      <button type="button" id="privacyModalAcceptBtn" class="btn btn-primary btn-sm">Elfogadom</button>
+    </div>
+  </div>
+</aside>
 
 </body>
 </html>
