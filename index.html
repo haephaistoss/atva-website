@@ -3581,16 +3581,21 @@
             </div>
 
             <div class="form-group">
+              <label for="contactCompany" class="form-label" data-i18n="form_company_label">Cégnév / Vállalkozás</label>
+              <input type="text" id="contactCompany" name="company" class="form-input" placeholder="pl. Példa Kft." data-i18n-placeholder="form_company_ph" autocomplete="organization">
+            </div>
+
+            <div class="form-group">
+              <label for="contactTax" class="form-label" data-i18n="form_tax_label">Adószám</label>
+              <input type="text" id="contactTax" name="tax_id" class="form-input" placeholder="pl. 12345678-2-41" data-i18n-placeholder="form_tax_ph" autocomplete="off">
+            </div>
+
+            <div class="form-group">
               <label for="contactPhone" class="form-label" data-i18n="form_phone_label">Telefonszám</label>
               <input type="tel" id="contactPhone" name="phone" class="form-input" placeholder="+36 30 123 4567" data-i18n-placeholder="form_phone_ph" autocomplete="tel">
             </div>
 
             <div class="form-group">
-              <label for="contactCompany" class="form-label" data-i18n="form_company_label">Cégnév / Vállalkozás</label>
-              <input type="text" id="contactCompany" name="company" class="form-input" placeholder="pl. Példa Kft." data-i18n-placeholder="form_company_ph" autocomplete="organization">
-            </div>
-
-            <div class="form-group full-width">
               <label for="contactService" class="form-label" data-i18n="form_service_label">Érdeklődési terület</label>
               <select id="contactService" name="service" class="form-select">
                 <option value="" selected data-i18n="form_opt_default">Kérjük válasszon (opcionális)...</option>
@@ -3870,6 +3875,8 @@ nav_intro: "Bemutatkozás",
         form_phone_ph: "+36 30 123 4567",
         form_company_label: "Cégnév / Vállalkozás",
         form_company_ph: "pl. Példa Kft.",
+        form_tax_label: "Adószám",
+        form_tax_ph: "pl. 12345678-2-41",
         form_service_label: "Érdeklődési terület",
         form_opt_default: "Kérjük válasszon (opcionális)...",
         form_opt_grants: "Pályázatírás és támogatások (Sikerdíj)",
@@ -4069,6 +4076,8 @@ nav_intro: "About Us",
         form_phone_ph: "+1 555 123 4567",
         form_company_label: "Company / Organization",
         form_company_ph: "e.g. Acme Corp",
+        form_tax_label: "Tax Number / VAT ID",
+        form_tax_ph: "e.g. 12345678-2-41",
         form_service_label: "Area of Interest",
         form_opt_default: "Please select (optional)...",
         form_opt_grants: "Grant Writing & Subsidies (Success Fee)",
@@ -4300,6 +4309,7 @@ nav_intro: "About Us",
         const email = document.getElementById('contactEmail');
         const phone = document.getElementById('contactPhone');
         const company = document.getElementById('contactCompany');
+        const tax = document.getElementById('contactTax');
         const service = document.getElementById('contactService');
         const message = document.getElementById('contactMessage');
         const privacy = document.getElementById('contactPrivacy');
@@ -4345,6 +4355,7 @@ nav_intro: "About Us",
         const emailVal = email.value.trim();
         const phoneVal = phone ? phone.value.trim() : '';
         const companyVal = company ? company.value.trim() : '';
+        const taxVal = tax ? tax.value.trim() : '';
         const serviceVal = service && service.selectedIndex >= 0 ? service.options[service.selectedIndex].text : '';
         const messageVal = message.value.trim();
         const honeyVal = honey ? honey.value.trim() : '';
@@ -4354,6 +4365,7 @@ nav_intro: "About Us",
           email: emailVal,
           phone: phoneVal,
           company: companyVal,
+          tax_id: taxVal,
           service: serviceVal,
           message: messageVal,
           _honey: honeyVal
@@ -4368,6 +4380,7 @@ nav_intro: "About Us",
             "E-mail": emailVal,
             "Telefonszám / Phone": phoneVal || 'Nem adott meg',
             "Cégnév / Company": companyVal || 'Nem adott meg',
+            "Adószám / Tax ID": taxVal || 'Nem adott meg',
             "Érdeklődési terület / Area": serviceVal || 'Egyéb',
             "Üzenet / Message": messageVal,
             "_subject": `Új Cégdoktor megkeresés: ${nameVal} (${companyVal || 'Magánszemély'})`,

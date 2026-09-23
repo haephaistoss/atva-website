@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         // ignore parse error
       }
     }
-    const { name, email, phone, company, service, message, _honey } = body || {};
+    const { name, email, phone, company, tax_id, service, message, _honey } = body || {};
 
     // Spam honeypot detection
     if (_honey) {
@@ -37,6 +37,7 @@ export default async function handler(req, res) {
       "E-mail": String(email).trim(),
       "Telefonszám / Phone": phone ? String(phone).trim() : 'Nem adott meg',
       "Cégnév / Company": company ? String(company).trim() : 'Nem adott meg',
+      "Adószám / Tax ID": tax_id ? String(tax_id).trim() : 'Nem adott meg',
       "Érdeklődési terület / Area": service ? String(service).trim() : 'Egyéb',
       "Üzenet / Message": String(message).trim(),
       "_subject": `Új Cégdoktor megkeresés: ${String(name).trim()} (${company ? String(company).trim() : 'Magánszemély'})`,
