@@ -5,9 +5,9 @@
   "rewrites": [
     { "source": "/", "destination": "/index.html" },
     { "source": "/cegdoktor", "destination": "/index.html" },
-    { "source": "/adatkezeles", "destination": "/adatkezeles.html" },
-    { "source": "/adatvedelem", "destination": "/adatkezeles.html" },
-    { "source": "/privacy", "destination": "/adatkezeles.html" }
+    { "source": "/adatkezeles", "destination": "/adatkezeles" },
+    { "source": "/adatvedelem", "destination": "/adatkezeles" },
+    { "source": "/privacy", "destination": "/adatkezeles" }
   ],
   "headers": [
     {
