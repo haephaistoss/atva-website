@@ -1,13 +1,13 @@
-# ATVA Website
+# Cégdoktor Weboldal
 
-> Hivatalos bemutatkozó és ügyfélszerző weboldal: Pályázatírás · Projektmenedzsment · Céges Tanácsadás.
+> Hivatalos bemutatkozó és ügyfélszerző weboldal: Pályázatírás · Projektmenedzsment · Cégvezetési Tanácsadás.
 
 ## Jellemzők / Features
 
 - **Liquid Glass Design**: Prémium, Apple-ihlette vizes üveg textúra refrakciós élfényekkel és rétegzett mélységgel.
 - **TidyFactor / Styler Animációk**: Finomhangolt, azonnali rugó-görbék (`cubic-bezier(0.16, 1, 0.3, 1)`), 8-állapotú interakciós mátrix és tapintható mikropresszió.
 - **Kétnyelvű Rendszer (HU / EN)**:
-  - Teljes magyar és angol nyelvű lokalizáció 79 egyedi felületi elemmel.
+  - Teljes magyar és angol nyelvű lokalizáció egyedi felületi elemekkel.
   - Automatikus böngészőnyelv-felismerés (`navigator.language`).
   - Gyors, újratöltés nélküli váltás szegmentált vezérlővel (`HU | EN`).
   - `localStorage` alapú állapotmegőrzés.
@@ -39,4 +39,4 @@ npx vercel --prod
 
 ## Licenc / Copyright
 
-&copy; 2026 ATVA. Minden jog fenntartva.
+&copy; 2026 Cégdoktor. Minden jog fenntartva.
