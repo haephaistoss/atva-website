@@ -13,17 +13,59 @@
      Replaces Fraunces' quirky cursive ligature glyph with a classic, balanced serif ampersand */
   @font-face {
     font-family: 'Fraunces';
-    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('Instrument Sans');
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('serif');
     unicode-range: U+0026;
     font-style: normal;
-    font-weight: 100 900;
+    font-weight: 400;
   }
   @font-face {
     font-family: 'Fraunces';
-    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('Instrument Sans');
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('serif');
+    unicode-range: U+0026;
+    font-style: normal;
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('serif');
+    unicode-range: U+0026;
+    font-style: normal;
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia'), local('Baskerville'), local('Times New Roman'), local('serif');
+    unicode-range: U+0026;
+    font-style: normal;
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia Italic'), local('Georgia'), local('Baskerville Italic'), local('Times New Roman Italic'), local('serif');
     unicode-range: U+0026;
     font-style: italic;
-    font-weight: 100 900;
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia Italic'), local('Georgia'), local('Baskerville Italic'), local('Times New Roman Italic'), local('serif');
+    unicode-range: U+0026;
+    font-style: italic;
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia Italic'), local('Georgia'), local('Baskerville Italic'), local('Times New Roman Italic'), local('serif');
+    unicode-range: U+0026;
+    font-style: italic;
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: local('Georgia Italic'), local('Georgia'), local('Baskerville Italic'), local('Times New Roman Italic'), local('serif');
+    unicode-range: U+0026;
+    font-style: italic;
+    font-weight: 700;
   }
 
   /* ═══════════════════════════════════════════════════════════════
@@ -3934,18 +3976,18 @@ nav_intro: "Bemutatkozás",
       en: {
         page_title: "Cégdoktor — Grant Writing · Business Advisory · Project Management",
                 nav_showcase: "Showcase",
-        showcase_badge: "Documentation & Case Studies",
-        showcase_title: "Grant & Financing Document Showcase",
+        showcase_badge: "Documentation and Case Studies",
+        showcase_title: "Grant and Financing Document Showcase",
         showcase_lead: "An exclusive look into our successfully prepared and submitted grant applications, financial studies, and credit program dossiers.",
         showcase_card1_tag: "SME Financing 2026",
         showcase_card1_title: "Széchenyi Credit Program MAX+ Guide",
         showcase_card1_desc: "Comprehensive guide to the Széchenyi Card MAX+ facilities (Overdraft, Liquidity, Investment, Leasing, Agrar): 1M to 750M HUF limits with fixed rates from 3.00%.",
         showcase_card1_meta: "16 pages · PDF",
-        showcase_card2_tag: "Digitalization & ERP",
+        showcase_card2_tag: "Digitalization and ERP",
         showcase_card2_title: "DIMOP Plusz 1.2.3/A-24 — Digitalization",
         showcase_card2_desc: "Digitalization credit product for SMEs: 3–20M HUF financing with up to 50% non-refundable grant, 0% interest for cloud, CRM, and ERP workflows.",
         showcase_card2_meta: "12 pages · PDF",
-        showcase_card3_tag: "Tourism & Hospitality",
+        showcase_card3_tag: "Tourism and Hospitality",
         showcase_card3_title: "KTH START Tourism Investment Loan",
         showcase_card3_desc: "Summary for hospitality and tourism businesses: 1–10M HUF loan with up to 50% non-refundable grant component, fixed 3.00% rate, and 12-month grace period.",
         showcase_card3_meta: "11 pages · PDF",
@@ -3964,11 +4006,11 @@ nav_intro: "About Us",
         partners_lead: "We reinforce our grant writing and management consultancy with the specialized expertise of top-tier legal, procurement, tax, and technological partners.",
         partner_1_badge: "Public Procurement",
         partner_1_desc: "Full-scale EU and domestic public procurement management, tender preparation, and compliance advisory.",
-        partner_2_badge: "Real Estate & Corporate Law",
+        partner_2_badge: "Real Estate and Corporate Law",
         partner_2_desc: "Real estate transaction contracts, corporate proceedings, commercial litigation, and legal audits nationwide.",
-        partner_3_badge: "Accounting & Tax Advisory",
+        partner_3_badge: "Accounting and Tax Advisory",
         partner_3_desc: "Comprehensive accounting, strategic tax advisory, payroll administration, and financial due diligence.",
-        partner_4_badge: "Security & Safety Tech",
+        partner_4_badge: "Security and Safety Tech",
         partner_4_desc: "Central gateway for verification, biometric security platforms, workforce authentication, and safety systems.",
         partner_visit_btn: "Visit Website",
         nav_pricing: "Pricing",
@@ -3988,7 +4030,7 @@ nav_intro: "About Us",
         hero_card_header: "Grant Pricing Stages",
         stage_1_title: "Initial Consultation",
         stage_2_title: "Opportunity Assessment",
-        stage_3_title: "Documentation & Submission",
+        stage_3_title: "Documentation and Submission",
         stage_4_title: "Successful Grant Award",
         stage_4_price: "Success Fee",
         
@@ -4004,13 +4046,13 @@ nav_intro: "About Us",
         services_title: "How We Can Help",
         services_desc: "From corporate financing and public tender procedures to grant funds and executive operations — unified under one roof.",
         
-        svc_consulting_title: "Business Consulting & Advisory",
+        svc_consulting_title: "Business Consulting and Advisory",
         svc_consulting_quote: "“Our clients focus solely on professional execution — we lift the operational burden of management from your shoulders.”",
         spotlight_item_1_title: "Tailored Management Structure",
         spotlight_item_1_desc: "We architect an internal organizational and decision-making system customized specifically to your enterprise size.",
         spotlight_item_2_title: "Modern Software Systems",
         spotlight_item_2_desc: "We evaluate, implement, and orchestrate modern tools and digital registers that elevate day-to-day productivity.",
-        spotlight_item_3_title: "Public Procurement & Grant Preparation",
+        spotlight_item_3_title: "Public Procurement and Grant Preparation",
         spotlight_item_3_desc: "We rigorously prepare your enterprise to enter grants and public procurement tenders with zero compliance defects.",
         spotlight_item_4_title: "Operational Management Delivery",
         spotlight_item_4_desc: "We manage administrative execution and operational tracking so you can focus completely on your core expertise.",
@@ -4018,7 +4060,7 @@ nav_intro: "About Us",
         pill_success_fee: "Success-Fee Based",
         pill_milestone: "Accountable Delivery",
         pill_legal: "Legal Specialist",
-        pill_rescue: "Risk & Compliance",
+        pill_rescue: "Risk and Compliance",
         pill_audit: "Strategic Readiness",
         pill_finance: "Financing",
         
@@ -4037,7 +4079,7 @@ nav_intro: "About Us",
         svc_procure_feat1: "End-to-end guidance for commercial tender bidders",
         svc_procure_feat2: "Supervised by public procurement legal specialists",
         
-        svc_loans_title: "Preferential Loans & Credit",
+        svc_loans_title: "Preferential Loans and Credit",
         svc_loans_desc: "Structuring preferential credit facilities under state programs: from selecting the optimal product through to fund disbursement with dedicated 2–4 week turnaround.",
         svc_loans_feat1: "Priority execution typically within 2–4 weeks",
         svc_loans_feat2: "End-to-end expert support through loan disbursement",
@@ -4052,12 +4094,12 @@ nav_intro: "About Us",
         svc_accounting_feat1: "Preparation for grant applications and public tenders",
         svc_accounting_feat2: "Financial statements and balance sheet optimization",
         
-        systems_label: "Operations & Systems",
+        systems_label: "Operations and Systems",
         systems_title: "Managing Workflows Through Software.",
         systems_desc: "Effective business governance begins with a transparent, digital-first foundation. We implement structured task orchestration and real-time oversight systems.",
         proc_task_title: "Internal Task Management Platform",
         proc_task_desc: "We manage tasks and incoming submissions within a unified internal interface. Every workflow is documented, assigned to clear owners, and kept transparent.",
-        proc_time_title: "Access Control & Time Tracking",
+        proc_time_title: "Access Control and Time Tracking",
         proc_time_desc: "Where needed, we integrate smart access systems and digital time logs, guaranteeing accurate payroll accountability with minimal friction.",
         proc_custom_title: "Custom Internal Software Solutions",
         proc_custom_desc: "We design bespoke internal workflows tailored to your unique operational footprint, accelerating daily operations and empowering executive decisions.",
@@ -4075,19 +4117,19 @@ nav_intro: "About Us",
         step_1_text: "We review your corporate objectives, business posture, and operational needs.",
         step_2_name: "Assessment",
         step_2_text: "We identify the most suitable grant, credit facility, or software workflow.",
-        step_3_name: "Preparation & Filing",
+        step_3_name: "Preparation and Filing",
         step_3_text: "We draft complete documentation and submit flawlessly on schedule.",
-        step_4_name: "Award & Disbursement",
+        step_4_name: "Award and Disbursement",
         step_4_text: "For grants, our success fee only becomes payable upon positive approval.",
         
-        team_label: "Team & Expert Network",
+        team_label: "Team and Expert Network",
         team_title: "Multidisciplinary Expertise.",
         team_desc: "Our core team and trusted specialized partners ensure legal, procurement, and accounting work meets the highest standards of excellence.",
         team_lawyer_title: "Corporate Legal Counsel",
         team_lawyer_desc: "Our team includes dedicated corporate counsel who ensures rigorous structuring and drafting of all agreements, contracts, and regulatory filings.",
         team_procure_title: "Public Procurement Specialist",
         team_procure_desc: "Our public procurement legal partner delivers end-to-end guidance for successful tenders, from bid preparation to final contract execution.",
-        team_account_title: "Accounting & Finance Partners",
+        team_account_title: "Accounting and Finance Partners",
         team_account_desc: "In partnership with modern accounting specialists, we deliver transparent bookkeeping and financial structuring aligned with operational realities.",
         
         contact_badge: "Contact",
@@ -4107,14 +4149,14 @@ nav_intro: "About Us",
         form_tax_ph: "e.g. 12345678-2-41",
         form_service_label: "Area of Interest",
         form_opt_default: "Please select (optional)...",
-        form_opt_grants: "Grant Writing & Subsidies (Success Fee)",
-        form_opt_consulting: "Business Advisory & Org Design",
+        form_opt_grants: "Grant Writing and Subsidies (Success Fee)",
+        form_opt_consulting: "Business Advisory and Org Design",
         form_opt_rescue: "Specialized Advisory",
         form_opt_acct_consult: "Accounting Advisory",
         form_opt_pm: "Project Management",
         form_opt_loans: "Preferential Loans",
         form_opt_procure: "Public Procurement Legal Supervision",
-        form_opt_accounting: "Accounting & Bookkeeping Cooperation",
+        form_opt_accounting: "Accounting and Bookkeeping Cooperation",
         form_opt_other: "Other Inquiries",
         form_message_label: "Message Description",
         form_message_ph: "Briefly describe your objectives, project, or inquiry...",
